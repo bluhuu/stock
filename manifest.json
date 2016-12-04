@@ -1,0 +1,22 @@
+{
+   "background": {
+      "scripts": [ "background.js" ]
+   },
+   "browser_action": {
+      "default_icon": {
+         "128": "images/logo128.png",
+         "19": "images/logo19.png",
+         "38": "images/logo38.png",
+         "48": "images/logo48.png"
+      },
+      "default_popup": "index.html"
+   },
+   "content_security_policy": "script-src 'self' https://*.cnzz.com; object-src 'self'",
+   "description": "办公室看盘炒股利器，不会被上司发现的看盘软件",
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkto3k45hF9DnoEit8E9V3G6OI68ewpAhbxuNAzPdFcnkjhPi3KJoE3whjisON8ZwYiUl1YtKGAiMJNU/yGCKLWybV8c5gKRPq79Atzrzb79DjvCyHD7Uawopt+bfLljctMIN+ggTGsK/5+/91+BLRFSeZP19A4bgubc36oE4781qGncMI4Yn5fyseUBDljoIMqtx6tQ9SolpLodx9SdSMx4KILrJosd+12PWfaDwD/pGmaDc8yX1Lis2FdoBienhvpyiQAv3xEF3gnaVWD2rCfn6j3fuT6yJdtlGzbJZa5lJhe3dE0cbjVZTDdSPsSl4GK+Eq27TC8ltCjg6gdlN/wIDAQAB",
+   "manifest_version": 2,
+   "name": "股票小助手",
+   "permissions": [ "tabs", "cookies", "storage", "*://*/*" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.0.4"
+}
