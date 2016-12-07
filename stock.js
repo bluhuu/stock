@@ -128,18 +128,21 @@
 function getLinkUrl(obj){
 	var linkUrl = '',
 		imgUrl = '';
-
-	switch(obj.type){
-		case "ZS":
-			linkUrl =  'http://stockhtm.finance.qq.com/hqing/zhishu/' + obj.code + '.htm';
-			break;
-		case "GP-A":
-		case undefined:
-			linkUrl = 'http://stockhtm.finance.qq.com/sstock/ggcx/' +　obj.code + '.shtml';
-			break;
-		default:
-			linkUrl = 'http://stockhtm.finance.qq.com/fund/djj_jjcx/' + obj.code + '.htm';
-			break;
+	if(obj.key){
+		linkUrl =  'https://xueqiu.com/S/' + obj.key;
+	}else{
+		switch(obj.type){
+			case "ZS":
+				linkUrl =  'http://stockhtm.finance.qq.com/hqing/zhishu/' + obj.code + '.htm';
+				break;
+			case "GP-A":
+			case undefined:
+				linkUrl = 'http://stockhtm.finance.qq.com/sstock/ggcx/' +　obj.code + '.shtml';
+				break;
+			default:
+				linkUrl = 'http://stockhtm.finance.qq.com/fund/djj_jjcx/' + obj.code + '.htm';
+				break;
+		}
 	}
 
 	if(obj.type == "ZS"){
@@ -175,6 +178,7 @@ function getLinkUrl(obj){
 			dataList.forEach(function(item){
 				var itemObj = $.extend({},item);
 				itemObj.code = item.key.slice(2);
+				itemObj.key = item.key;
 				itemObj.remarkFlag = item.remark ? "remarked" : "";
 				itemObj.url = getLinkUrl(itemObj).linkUrl;
 				sHtml += tmpl(sTplList,itemObj);
