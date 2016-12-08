@@ -34,7 +34,7 @@
 		}
 		sync2Local();
 	}
-	/* 排序 */ 
+	/* 排序 */
 	var sortItem = function(queue){
 		if($.isArray(queue)){
 			if(queue.join("") == data.order.join("")){
@@ -60,7 +60,7 @@
 		}
 		return arrData;
 	}
-	// 初始化数据
+	// 从本地getLocalData初始化data
 	(function(){
 		var arr = getLocalData();
 		arr.forEach(function(item,index){
@@ -86,7 +86,7 @@
 			if(obj.key && obj.remark != undefined){
 				editItem(obj);
 			}
-			cb && cb();			
+			cb && cb();
 		},
 		getAll : function(cb){
 			var res = [];
@@ -114,7 +114,7 @@
 		},
 		sort : function(queue,cb){
 			var sort = sortItem(queue);
-			
+
 			if(sort){
 				cb && cb();
 			}
@@ -166,7 +166,7 @@ function getLinkUrl(obj){
 						'<span class="hands">--</span>',
 						'<span class="remark {remarkFlag}" title="{remark}">加备注</span>',
 						'<a href="#" class="delete" data-key="{key}">X</a>',
-					'</li>'].join("");	
+					'</li>'].join("");
 	var Stock = {
 		name : LocalData.name,
 		timerSort : null,
@@ -193,13 +193,13 @@ function getLinkUrl(obj){
 				// var ret = new Function('return ' + res)();
 				var arrRet = res.trim().split(";");
 				var obj = {};
-				arrRet.forEach(function(item, index){ 
+				arrRet.forEach(function(item, index){
 					var arr = item.trim().split("="); // trim是要把回车干掉
 					if(arr.length > 1){
 						obj[arr[0]] = arr[1].replace('"','');
 					}
-				})	
-				
+				})
+
 				var data = {};
 				for(var key in obj){
 					var arr = obj[key].split("~");
@@ -216,7 +216,7 @@ function getLinkUrl(obj){
 						temp.price = "停牌";
 						temp.growRate = '--';
 						temp.hands = '--';
-					} 
+					}
 					if(parseFloat(temp.growRate) > 0){
 						temp.className = 'increase';
 					}else if(parseFloat(temp.growRate) < 0){
@@ -257,7 +257,7 @@ function getLinkUrl(obj){
 				}
 				queue.push(item.id);
 			})
-			
+
 			LocalData.sort(queue,function(){
 				$(".tipStock").show();
 				clearTimeout(self.timerSort);
@@ -273,6 +273,7 @@ function getLinkUrl(obj){
 				return;
 			}
 			obj.code = obj.key.slice(2);
+			obj.url = getLinkUrl(obj).linkUrl;
 			var sHtml = tmpl(sTplList,obj);
 
 			$('#zxg .zxg-list').prepend(sHtml);
@@ -285,13 +286,13 @@ function getLinkUrl(obj){
 				$("#zxg .loading").hide();
 				return;
 			}
-			
+
 			for(var i = 0,len = Math.ceil(keys.length/NUM); i < len; i++){
 				var arr = keys.slice(i*NUM, (i+1)*NUM);
 
 				this._loadStockData(arr.join(","),function(res){
 					var $els = $("#zxg .zxg-list li");
-					
+
 					$els.each(function(index,item){
 						var key = item.id;
 						var obj = res['v_' + key];
@@ -317,7 +318,7 @@ function getLinkUrl(obj){
 		initDom : function(){
 			var sHtml = this._renderStockStruct();
 			$('#zxg .zxg-list').html(sHtml);
-			
+
 			this.updateStockData(function(){
 				$("#zxg .loading").hide();
 			});
@@ -345,7 +346,7 @@ function getLinkUrl(obj){
 				$formRemark.show().find("#remark-key").val(key)
 					.end().find(".name").html(name)
 					.end().find(".price").html(price)
-					.end().find("#remark").html($(this).attr("title"));				
+					.end().find("#remark").html($(this).attr("title"));
 				$(".mask").show();
 			});
 			$(".remark-form").delegate(".close","click",function(e){
@@ -372,7 +373,7 @@ function getLinkUrl(obj){
 			$(".zxg-list").delegate("li .name","mouseenter",function(e){
 				$el = $(this);
 				var $parent = $el.parents("li");
-				
+
 				var code = $parent.attr("id").slice(2);
 				var type = $parent.attr("data-type");
 				var imgUrl = getLinkUrl({code:code,type:type}).imgUrl;
@@ -385,7 +386,7 @@ function getLinkUrl(obj){
 						style = ' style="top:-82px"';
 					}
 					var str = '<div class="trendImg"' + style + '><img src="'+imgUrl+'?'+Math.random()+'" alt="" /></div>';
-					$el.append(str);					
+					$el.append(str);
 				},500);
 			}).delegate("li .name","mouseleave",function(e){
 				clearTimeout(timerTrend);
@@ -406,7 +407,7 @@ function getLinkUrl(obj){
 				activate : function(event,ui){
 					ui.item.removeClass('hover');
 				},
-				deactivate : function(event,ui){      	
+				deactivate : function(event,ui){
 					self.sortStock();
 				}
 			});
@@ -425,7 +426,7 @@ function getLinkUrl(obj){
 		clearInterval(timer);
 		timer = setInterval(function(){
 			Stock.updateStockData();
-		},1000);		
+		},1000);
 	}
 	startRender();
 
