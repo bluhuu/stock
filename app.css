@@ -201,6 +201,11 @@ body{
 .zxg-stock .reduce{
 	color:#009900;
 }
+.zxg-stock .zxg-list .Pricetobookratio,
+.zxg-stock .zxg-list .pe_lyr,
+.zxg-stock .zxg-list .pe_ttm{
+	color:#36c;
+}
 .zxg-stock span{
 	display:inline-block;
 	float:left;
@@ -236,6 +241,9 @@ body{
 .zxg-stock .price{width:70px;}
 .zxg-stock .grow{width:70px;}
 .zxg-stock .hands{width:70px;}
+.zxg-stock .Pricetobookratio{width:70px;}
+.zxg-stock .pe_ttm{width:70px;}
+.zxg-stock .pe_lyr{width:70px;}
 .zxg-stock .delete{
 	width:45px;
 }	

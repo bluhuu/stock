@@ -164,6 +164,9 @@ function getLinkUrl(obj){
 						'<span class="price">--</span>',
 						'<span class="grow">--</span>',
 						'<span class="hands">--</span>',
+						'<span class="Pricetobookratio">--</span>',
+						'<span class="pe_ttm">--</span>',
+						'<span class="pe_lyr">--</span>',
 						'<span class="remark {remarkFlag}" title="{remark}">加备注</span>',
 						'<a href="#" class="delete" data-key="{key}">X</a>',
 					'</li>'].join("");
@@ -208,6 +211,9 @@ function getLinkUrl(obj){
 						name : arr[1],
 						code : arr[2],
 						price : arr[3],
+						Pricetobookratio : arr[46],
+						pe_lyr : "---",
+						pe_ttm : (arr[39] ? arr[39] : '0.00'),
 						growRate : arr[32] + '%',
 						hands : (arr[38] ? arr[38] : '0.00') + '%',
 						className : ''
@@ -216,6 +222,9 @@ function getLinkUrl(obj){
 						temp.price = "停牌";
 						temp.growRate = '--';
 						temp.hands = '--';
+						temp.Pricetobookratio = '--';
+						temp.pe_lyr = '--';
+						temp.pe_ttm = '--';
 					}
 					if(parseFloat(temp.growRate) > 0){
 						temp.className = 'increase';
@@ -309,6 +318,9 @@ function getLinkUrl(obj){
 						item.find(".price").html(obj.price).removeClass('increase','reduce').addClass(obj.className);
 						item.find(".grow").html(obj.growRate).removeClass('increase','reduce').addClass(obj.className);
 						item.find(".hands").html(obj.hands);
+						item.find(".Pricetobookratio").html(obj.Pricetobookratio);
+						item.find(".pe_lyr").html(obj.pe_lyr);
+						item.find(".pe_ttm").html(obj.pe_ttm);
 					});
 
 					cb && cb();
@@ -342,10 +354,16 @@ function getLinkUrl(obj){
 				var key = $(this).parents("li").attr("id");
 				var name = $(this).prevAll(".name").html();
 				var price = $(this).prevAll(".price").html();
+				var Pricetobookratio = $(this).prevAll(".Pricetobookratio").html();
+				var pe_lyr = $(this).prevAll(".pe_lyr").html();
+				var pe_ttm = $(this).prevAll(".pe_ttm").html();
 				var $formRemark = $(".remark-form");
 				$formRemark.show().find("#remark-key").val(key)
 					.end().find(".name").html(name)
 					.end().find(".price").html(price)
+					.end().find(".Pricetobookratio").html(Pricetobookratio)
+					.end().find(".pe_lyr").html(pe_lyr)
+					.end().find(".pe_ttm").html(pe_ttm)
 					.end().find("#remark").html($(this).attr("title"));
 				$(".mask").show();
 			});
