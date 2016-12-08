@@ -1,14 +1,5 @@
 ;(function($,undefined){
 	// 初始化指数数据
-    $('.top').zclip({
-        path: 'libs/ZeroClipboard.swf',
-        copy: function(){//复制内容
-            return $('.top').val();
-        },
-        afterCopy: function(){//复制成功
-            $("<span id='msg'/>").insertAfter($(this)).text('复制成功');
-        }
-    });
 	(function(){
 		if(!!localStorage.getItem('stock_list')){
 			return;
