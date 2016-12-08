@@ -1,5 +1,5 @@
 ;(function($,undefined){
-	// var $weixin = $("#weixin");	
+	// var $weixin = $("#weixin");
 	var sTpl = ['<li class="item">',
 					'<div class="img">',
 						'<img src="{img}" alt="{name}">',
@@ -10,7 +10,7 @@
 					'</div>',
 				'</li>'].join("");
 
-	var getRecoList = function(data,sTpl){	
+	var getRecoList = function(data,sTpl){
 		var arrHtml = [];
 		for(var i = 0,len = data.length;i < len;i++){
 			arrHtml.push(tmpl(sTpl, data[i]));
