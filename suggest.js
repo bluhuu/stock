@@ -5,6 +5,7 @@
  * @version 1.0.2
  */
  function loadJs(l,f,e){var b={}.toString.call(l)==="[object Array]",a=document.getElementsByTagName("SCRIPT")[0],h=a.parentNode,d=0,j=false,g=3000,c=function(m){if(m.clearAttributes){m.clearAttributes()}else{m.onload=m.onreadystatechange=m.onerror=null}h.removeChild(m)},i=function(){if(!f){return}if(b){d++;if(d===l.length){j=true;f()}}else{j=true;f()}},k=function(n){var m=document.createElement("SCRIPT");m.type="text/javascript";m.charset="utf-8";m.async=true;if(m.readyState){m.onreadystatechange=function(){if(m.readyState=="loaded"||m.readyState=="complete"){m.onreadystatechange=null;i()}}}else{m.onload=function(){i()}}if(e){m.onerror=function(){c(m);j=true;e()};setTimeout(function(){!j&&e()},g)}m.src=n;h.insertBefore(m,a)};if({}.toString.call(l)==="[object Array]"){each(l,function(m){k(m)})}else{k(l)}}
+
 (function($, win, undefined){
 
     /* 获取数组或者对象指定路径下的取值 */
@@ -60,7 +61,7 @@
             return data[$1] == null ? '' : htmlEscape(getPathData(data,$1));
         });
     }
-    
+
 	function Suggest( conf ){
 		this._init( conf );
 	}
@@ -219,7 +220,7 @@
 							break;
 						case 40:
 							direction = "down";
-							break; 
+							break;
 					}
 					t._focusItem(direction);
 				}
@@ -244,12 +245,12 @@
 					})
 					arr.push(el.attr('data-type'));
 					val = el.attr('data-pre') + "  " + arr.join("  ");
-					
+
 					t.config.submitCallback(val);
 					t.hide();
 					$input.val('');
 				}
-				
+
 			});
 
 			/* 关闭按钮 */
@@ -325,7 +326,7 @@
 			var curItem = $sug.find(".sug-item").eq(nextIndex);
 			if(nextIndex != -1){
 				curItem.addClass(focusClass);
-			}			
+			}
 
 			var arr = [];
 			curItem.find("span").each(function(i,item){
@@ -476,8 +477,8 @@
 				// 	data.forEach(function(item,index){
 				// 		data[index] = item.split("~");
 				// 	})
-				// 	callback.call( t , kw , data, t.config.template.item );	
-				// },function(){});	
+				// 	callback.call( t , kw , data, t.config.template.item );
+				// },function(){});
 			}else{
 				/* jsonp的回调处理 */
 				win[ cb ] = function( res ){
