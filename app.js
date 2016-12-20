@@ -22,7 +22,7 @@
 				var icon = confIcons.shift();
 				html.push('<a href="#" class="icon" data-id="' + icon + '"><img src="images/icons/' + icon + '.png"/></a>');
 			}
-			$('#setting .iconlist').html(html.join(""));			
+			$('#setting .iconlist').html(html.join(""));
 		}
 		var bindEvent = function(){
 			$('.setting').on('click', function(e){
@@ -127,9 +127,8 @@
 	// 				$(".weixin").attr("data-status","ok");
 	// 				$(".loading").hide();
 	// 			});
-	// 		}			
+	// 		}
 	// 	}
 	// });
-	
-})(jQuery);
 
+})(jQuery);
