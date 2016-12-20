@@ -13,10 +13,10 @@
 		}
 	})();
 
+	// 选择图标对话框
 	(function(){
 		var renderIconHtml = function(){
 			var confIcons = ['rabbit', 'panda', 'mouse', 'lips', 'bear', 'dog', 'angrybird', 'hellokitty', 'octopus', 'tiger', 'flower', 'crab'];
-			// window.confIcons = confIcons;
 			var html = [];
 			while(confIcons.length){
 				var icon = confIcons.shift();

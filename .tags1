@@ -4,7 +4,7 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-renderIconHtml	D:\bluhuu\stock\app.js	/^		var renderIconHtml = function(){$/;"	function	line:17
+renderIconHtml	D:\bluhuu\stock\app.js	/^		var renderIconHtml = function(){$/;"	function	line:18
 bindEvent	D:\bluhuu\stock\app.js	/^		var bindEvent = function(){$/;"	function	line:27
 bindEvent	D:\bluhuu\stock\app.js	/^		var bindEvent = function(){$/;"	function	line:27
 submitCallback	D:\bluhuu\stock\app.js	/^		submitCallback : function(query){$/;"	function	line:64
