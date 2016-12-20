@@ -4,7 +4,69 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-renderIconHtml	D:\bluhuu\stock\app.js	/^		var renderIconHtml = function(){$/;"	function	line:18
-bindEvent	D:\bluhuu\stock\app.js	/^		var bindEvent = function(){$/;"	function	line:27
-bindEvent	D:\bluhuu\stock\app.js	/^		var bindEvent = function(){$/;"	function	line:27
-submitCallback	D:\bluhuu\stock\app.js	/^		submitCallback : function(query){$/;"	function	line:64
+html	D:\bluhuu\stock\index.html	/^<html>$/;"	function	line:2
+head	D:\bluhuu\stock\index.html	/^<head>$/;"	function	line:3
+meta	D:\bluhuu\stock\index.html	/^	<meta charset="utf-8">$/;"	function	line:4
+link	D:\bluhuu\stock\index.html	/^	<link rel="stylesheet" href="app.css">$/;"	function	line:5
+link	D:\bluhuu\stock\index.html	/^	<link rel="stylesheet" href="jquery-ui.css">$/;"	function	line:6
+body	D:\bluhuu\stock\index.html	/^<body>$/;"	function	line:8
+div	D:\bluhuu\stock\index.html	/^	<div id="setting">$/;"	function	line:9
+div	D:\bluhuu\stock\index.html	/^			<div class="title">选择浏览器显示图标<\/div>$/;"	function	line:10
+div	D:\bluhuu\stock\index.html	/^			<div class="iconlist"><\/div>$/;"	function	line:11
+span	D:\bluhuu\stock\index.html	/^			<span class="close">X<\/span>$/;"	function	line:12
+a	D:\bluhuu\stock\index.html	/^			<a href="#" class="default">使用默认图标<\/a>$/;"	function	line:13
+ul	D:\bluhuu\stock\index.html	/^	<ul class="nav-tabs">$/;"	function	line:15
+li	D:\bluhuu\stock\index.html	/^		<li class="tab on" data-type="default"><a href="#">我的自选<\/a><\/li>$/;"	function	line:16
+li	D:\bluhuu\stock\index.html	/^		<li class="tab"><a href="http:\/\/lhb.stock360.cn" target="_blank">龙虎榜<\/a><\/li>$/;"	function	line:17
+li	D:\bluhuu\stock\index.html	/^		<li class="tab"><a href="http:\/\/lhb.stock360.cn\/dz" target="_blank">破定增价股<\/a><\/li>$/;"	function	line:18
+div	D:\bluhuu\stock\index.html	/^	<div class="tab-content">$/;"	function	line:21
+div	D:\bluhuu\stock\index.html	/^		<div class="tab-pane on">$/;"	function	line:22
+form	D:\bluhuu\stock\index.html	/^			<form id="search" action="http:\/\/www.so.com\/s" method="get" target="_self">$/;"	function	line:23
+div	D:\bluhuu\stock\index.html	/^				<div class="search">$/;"	function	line:24
+div	D:\bluhuu\stock\index.html	/^					<div class="search-input">$/;"	function	line:25
+input	D:\bluhuu\stock\index.html	/^						<input type="text" id="input" name="q" placeholder="代码\/名称\/拼音">$/;"	function	line:26
+div	D:\bluhuu\stock\index.html	/^					<div class="search-button">$/;"	function	line:28
+input	D:\bluhuu\stock\index.html	/^						<input type="submit" value="搜索">$/;"	function	line:29
+div	D:\bluhuu\stock\index.html	/^			<div id="zxg">$/;"	function	line:33
+div	D:\bluhuu\stock\index.html	/^				<div class="loading"><img src="images\/loading.gif" alt=""><\/div>$/;"	function	line:34
+div	D:\bluhuu\stock\index.html	/^				<div class="zxg-stock">$/;"	function	line:35
+div	D:\bluhuu\stock\index.html	/^					<div class="zxg-hd gclearfix">$/;"	function	line:36
+span	D:\bluhuu\stock\index.html	/^						<span class="top">置顶<\/span>$/;"	function	line:37
+span	D:\bluhuu\stock\index.html	/^						<span class="name">名称(代码)<\/span>$/;"	function	line:38
+span	D:\bluhuu\stock\index.html	/^						<span class="price">最新价<\/span>$/;"	function	line:39
+span	D:\bluhuu\stock\index.html	/^						<span class="grow">涨跌幅<\/span>$/;"	function	line:40
+span	D:\bluhuu\stock\index.html	/^						<span class="hands">换手率<\/span>$/;"	function	line:41
+span	D:\bluhuu\stock\index.html	/^						<span class="Pricetobookratio">市净率<\/span>$/;"	function	line:42
+span	D:\bluhuu\stock\index.html	/^						<span class="pe_ttm">市盈率-静<\/span>$/;"	function	line:43
+span	D:\bluhuu\stock\index.html	/^						<span class="pe_lyr">市盈率-动<\/span>$/;"	function	line:44
+span	D:\bluhuu\stock\index.html	/^						<span class="remark">备注<\/span>$/;"	function	line:45
+span	D:\bluhuu\stock\index.html	/^						<span class="delete">删除<\/span>$/;"	function	line:46
+div	D:\bluhuu\stock\index.html	/^					<div class="zxg-bd">$/;"	function	line:48
+ul	D:\bluhuu\stock\index.html	/^						<ul class="zxg-list">$/;"	function	line:49
+div	D:\bluhuu\stock\index.html	/^					<div class="tipStock"><span class="ok"><\/span>列表保存已成功<\/div>$/;"	function	line:52
+div	D:\bluhuu\stock\index.html	/^		<div class="tab-pane">$/;"	function	line:56
+ul	D:\bluhuu\stock\index.html	/^			<ul class="stockList">$/;"	function	line:57
+li	D:\bluhuu\stock\index.html	/^				<li class="item head">$/;"	function	line:58
+span	D:\bluhuu\stock\index.html	/^					<span class="title">股票名称(代码)<\/span>$/;"	function	line:59
+span	D:\bluhuu\stock\index.html	/^					<span class="rating">推荐星级<\/span>$/;"	function	line:60
+span	D:\bluhuu\stock\index.html	/^					<span class="type">类型<\/span>$/;"	function	line:61
+span	D:\bluhuu\stock\index.html	/^					<span class="topic">概念<\/span>$/;"	function	line:62
+div	D:\bluhuu\stock\index.html	/^		<div class="tab-pane">$/;"	function	line:66
+ul	D:\bluhuu\stock\index.html	/^			<ul class="weixin" id="weixin">$/;"	function	line:67
+div	D:\bluhuu\stock\index.html	/^	<div class="remark-form">$/;"	function	line:73
+div	D:\bluhuu\stock\index.html	/^		<div class="remark-hd">$/;"	function	line:74
+span	D:\bluhuu\stock\index.html	/^			<span class="name"><\/span>(<span class="code"><\/span>) 当前股价:<span class="price"><\/span>$/;"	function	line:75
+span	D:\bluhuu\stock\index.html	/^			<span class="close">X<\/span>$/;"	function	line:76
+div	D:\bluhuu\stock\index.html	/^		<div class="remark-bd">$/;"	function	line:78
+textarea	D:\bluhuu\stock\index.html	/^			<textarea id="remark" placeholder="请输入您的购入理由和目标价位..."><\/textarea>$/;"	function	line:79
+input	D:\bluhuu\stock\index.html	/^			<input type="hidden" id="remark-key" value="">$/;"	function	line:80
+input	D:\bluhuu\stock\index.html	/^			<input type="button" class="btn" value="提交">$/;"	function	line:81
+div	D:\bluhuu\stock\index.html	/^	<div class="mask"><\/div>$/;"	function	line:84
+div	D:\bluhuu\stock\index.html	/^	<div id="warning" ><\/div>$/;"	function	line:85
+script	D:\bluhuu\stock\index.html	/^	<script src="jquery_1102.js"><\/script>$/;"	function	line:87
+script	D:\bluhuu\stock\index.html	/^	<script src="jquery-ui.js"><\/script>$/;"	function	line:88
+script	D:\bluhuu\stock\index.html	/^	<script src="libs\\jquery.zclip.js"><\/script>$/;"	function	line:89
+script	D:\bluhuu\stock\index.html	/^	<script src="util.js"><\/script>$/;"	function	line:90
+script	D:\bluhuu\stock\index.html	/^	<script src="suggest.js"><\/script>$/;"	function	line:91
+script	D:\bluhuu\stock\index.html	/^	<script src="stock.js"><\/script>$/;"	function	line:92
+script	D:\bluhuu\stock\index.html	/^	<script src="app.js"><\/script>$/;"	function	line:93

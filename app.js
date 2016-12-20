@@ -47,7 +47,6 @@
 		bindEvent();
 	})();
 
-
 	/* 搜索suggest */
 	var sug = new Suggest({
 		template : {
