@@ -233,10 +233,31 @@ function getLinkUrl(obj){
 					}
 					data[key] = temp;
 				}
-
+				console.log(data);
 				callback(data);
 			})
 		},
+		// 请求雪球数据
+		_loadXueQiuStockData : function(key,callback){
+			$.ajax({
+					url: 'https://xueqiu.com/v4/stock/quote.json',
+					dataType: "jsonp",
+					data: {
+						code:key,
+						return_hasexist:false,
+						_:new Date()
+					},
+					success: function(json, textStatus){
+						if(textStatus == "success"){
+							callback(json);
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log("查询失败: ",XMLHttpRequest);
+					}
+				});
+		},
+
 		addStock : function(queryObj){
 			var self = this;
 			if(LocalData.isExist(queryObj.key)){
@@ -298,7 +319,7 @@ function getLinkUrl(obj){
 
 			for(var i = 0,len = Math.ceil(keys.length/NUM); i < len; i++){
 				var arr = keys.slice(i*NUM, (i+1)*NUM);
-
+				this._loadXueQiuStockData(arr.join(","));
 				this._loadStockData(arr.join(","),function(res){
 					var $els = $("#zxg .zxg-list li");
 

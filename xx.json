@@ -9,6 +9,40 @@ pe_lyr: "---"				---pe_lyr
 pe_ttm: "45.35"				---pe_ttm
 price: "32.09"				---current
 
+stock_list:{
+    "value": [{
+        "key": "sh600340",
+        "name": "华夏幸福",
+        "pinyin": "hxxf",
+        "type": "GP-A",
+        "code": "600340",
+        "url": "https://xueqiu.com/S/sh600340"
+    }, {
+        "key": "sh601933",
+        "name": "永辉超市",
+        "pinyin": "yhcs",
+        "type": "GP-A",
+        "code": "601933",
+        "url": "https://xueqiu.com/S/sh601933"
+    }, {
+        "key": "sh000001",
+        "name": "上证指数",
+        "pinyin": "szzs",
+        "type": "ZS",
+        "code": "000001",
+        "url": "https://xueqiu.com/S/sh000001"
+    }, {
+        "key": "sz399006",
+        "name": "创业板指",
+        "pinyin": "cybz",
+        "type": "ZS",
+        "code": "399006",
+        "url": "https://xueqiu.com/S/sz399006"
+    }],
+    "lastUpdate": 1482202071729
+}
+
+https://xueqiu.com/v4/stock/quote.json?code=SH600366,SH600795
 https://xueqiu.com/v4/stock/quote.json?code=SH600366
 	{
 		"SH600366": {
