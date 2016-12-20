@@ -42,29 +42,29 @@ switch	D:\bluhuu\stock\stock.js	/^		switch(obj.type){$/;"	function	line:134
 getLinkUrl	D:\bluhuu\stock\stock.js	/^function getLinkUrl(obj){$/;"	function	line:128
 Stock.name	D:\bluhuu\stock\stock.js	/^		name : LocalData.name,$/;"	property	line:174
 _renderStockStruct	D:\bluhuu\stock\stock.js	/^		_renderStockStruct : function(obj){$/;"	function	line:176
-_loadXueQiuStockData	D:\bluhuu\stock\stock.js	/^		_loadXueQiuStockData : function(key,callback){$/;"	function	line:241
-success	D:\bluhuu\stock\stock.js	/^					success: function(json, textStatus){$/;"	function	line:250
-error	D:\bluhuu\stock\stock.js	/^					error: function(XMLHttpRequest, textStatus, errorThrown) {$/;"	function	line:255
-addStock	D:\bluhuu\stock\stock.js	/^		addStock : function(queryObj){$/;"	function	line:261
-obj	D:\bluhuu\stock\stock.js	/^			var obj = $.extend({}, queryObj);$/;"	variable	line:273
-sortStock	D:\bluhuu\stock\stock.js	/^		sortStock : function(cb){$/;"	function	line:281
-queue	D:\bluhuu\stock\stock.js	/^			var queue = [];$/;"	variable	line:283
-addStockData	D:\bluhuu\stock\stock.js	/^		addStockData : function(obj){$/;"	function	line:301
-sHtml	D:\bluhuu\stock\stock.js	/^			var sHtml = tmpl(sTplList,obj);$/;"	variable	line:307
-updateStockData	D:\bluhuu\stock\stock.js	/^		updateStockData : function(cb){$/;"	function	line:311
-NUM	D:\bluhuu\stock\stock.js	/^			var NUM = 30;	\/\/ 每30个一组发请求$/;"	variable	line:313
-initDom	D:\bluhuu\stock\stock.js	/^		initDom : function(){$/;"	function	line:376
-remark	D:\bluhuu\stock\stock.js	/^		remark : function(info,cb){$/;"	function	line:385
-_bindEvent	D:\bluhuu\stock\stock.js	/^		_bindEvent : function(){$/;"	function	line:388
-timerTrend	D:\bluhuu\stock\stock.js	/^			var timerTrend = null;$/;"	variable	line:436
-activate	D:\bluhuu\stock\stock.js	/^				activate : function(event,ui){$/;"	function	line:471
-deactivate	D:\bluhuu\stock\stock.js	/^				deactivate : function(event,ui){$/;"	function	line:474
-init	D:\bluhuu\stock\stock.js	/^		init : function(){$/;"	function	line:480
-timer	D:\bluhuu\stock\stock.js	/^	var timer = null;$/;"	variable	line:488
-startRender	D:\bluhuu\stock\stock.js	/^	function startRender(){$/;"	function	line:489
-startRender	D:\bluhuu\stock\stock.js	/^	function startRender(){$/;"	function	line:489
-base	D:\bluhuu\stock\stock.js	/^		var base = curTime.getFullYear() + '\/' + (curTime.getMonth() + 1) + '\/' + curTime.getDate() + ' ';$/;"	variable	line:501
-startAM	D:\bluhuu\stock\stock.js	/^		var startAM = base + '09:15:00'; \/\/ 早盘开盘时间$/;"	variable	line:502
-endAM	D:\bluhuu\stock\stock.js	/^		var endAM = base + '11:30:00';	\/\/ 早盘开盘时间$/;"	variable	line:503
-startPM	D:\bluhuu\stock\stock.js	/^		var startPM = base + '13:00:00';	\/\/ 午盘开盘时间$/;"	variable	line:504
-endPM	D:\bluhuu\stock\stock.js	/^		var endPM = base + '15:00:00';	\/\/ 午盘闭盘时间$/;"	variable	line:505
+_loadXueQiuStockData	D:\bluhuu\stock\stock.js	/^		_loadXueQiuStockData : function(key,callback){$/;"	function	line:192
+success	D:\bluhuu\stock\stock.js	/^					success: function(json, textStatus){$/;"	function	line:201
+error	D:\bluhuu\stock\stock.js	/^					error: function(XMLHttpRequest, textStatus, errorThrown) {$/;"	function	line:206
+addStock	D:\bluhuu\stock\stock.js	/^		addStock : function(queryObj){$/;"	function	line:212
+obj	D:\bluhuu\stock\stock.js	/^			var obj = $.extend({}, queryObj);$/;"	variable	line:224
+sortStock	D:\bluhuu\stock\stock.js	/^		sortStock : function(cb){$/;"	function	line:232
+queue	D:\bluhuu\stock\stock.js	/^			var queue = [];$/;"	variable	line:234
+addStockData	D:\bluhuu\stock\stock.js	/^		addStockData : function(obj){$/;"	function	line:252
+sHtml	D:\bluhuu\stock\stock.js	/^			var sHtml = tmpl(sTplList,obj);$/;"	variable	line:258
+updateStockData	D:\bluhuu\stock\stock.js	/^		updateStockData : function(cb){$/;"	function	line:262
+NUM	D:\bluhuu\stock\stock.js	/^			var NUM = 30;	\/\/ 每30个一组发请求$/;"	variable	line:264
+initDom	D:\bluhuu\stock\stock.js	/^		initDom : function(){$/;"	function	line:301
+remark	D:\bluhuu\stock\stock.js	/^		remark : function(info,cb){$/;"	function	line:310
+_bindEvent	D:\bluhuu\stock\stock.js	/^		_bindEvent : function(){$/;"	function	line:313
+timerTrend	D:\bluhuu\stock\stock.js	/^			var timerTrend = null;$/;"	variable	line:361
+activate	D:\bluhuu\stock\stock.js	/^				activate : function(event,ui){$/;"	function	line:396
+deactivate	D:\bluhuu\stock\stock.js	/^				deactivate : function(event,ui){$/;"	function	line:399
+init	D:\bluhuu\stock\stock.js	/^		init : function(){$/;"	function	line:405
+timer	D:\bluhuu\stock\stock.js	/^	var timer = null;$/;"	variable	line:413
+startRender	D:\bluhuu\stock\stock.js	/^	function startRender(){$/;"	function	line:414
+startRender	D:\bluhuu\stock\stock.js	/^	function startRender(){$/;"	function	line:414
+base	D:\bluhuu\stock\stock.js	/^		var base = curTime.getFullYear() + '\/' + (curTime.getMonth() + 1) + '\/' + curTime.getDate() + ' ';$/;"	variable	line:426
+startAM	D:\bluhuu\stock\stock.js	/^		var startAM = base + '09:15:00'; \/\/ 早盘开盘时间$/;"	variable	line:427
+endAM	D:\bluhuu\stock\stock.js	/^		var endAM = base + '11:30:00';	\/\/ 早盘开盘时间$/;"	variable	line:428
+startPM	D:\bluhuu\stock\stock.js	/^		var startPM = base + '13:00:00';	\/\/ 午盘开盘时间$/;"	variable	line:429
+endPM	D:\bluhuu\stock\stock.js	/^		var endPM = base + '15:00:00';	\/\/ 午盘闭盘时间$/;"	variable	line:430

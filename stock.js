@@ -165,8 +165,8 @@ function getLinkUrl(obj){
 						'<span class="grow">--</span>',
 						'<span class="hands">--</span>',
 						'<span class="Pricetobookratio">--</span>',
-						'<span class="pe_ttm">--</span>',
 						'<span class="pe_lyr">--</span>',
+						'<span class="pe_ttm">--</span>',
 						'<span class="remark {remarkFlag}" title="{remark}">加备注</span>',
 						'<a href="#" class="delete" data-key="{key}">X</a>',
 					'</li>'].join("");
@@ -188,55 +188,6 @@ function getLinkUrl(obj){
 			});
 			return sHtml;
 		},
-		// 请求数据
-		// _loadStockData : function(key,callback){
-		// 	var url = '/qt/?q=' + key + '&_t=' + (+new Date());
-		//
-		// 	ajax(url,function(res){
-		// 		// var ret = new Function('return ' + res)();
-		// 		var arrRet = res.trim().split(";");
-		// 		var obj = {};
-		// 		arrRet.forEach(function(item, index){
-		// 			var arr = item.trim().split("="); // trim是要把回车干掉
-		// 			if(arr.length > 1){
-		// 				obj[arr[0]] = arr[1].replace('"','');
-		// 			}
-		// 		})
-		//
-		// 		var data = {};
-		// 		for(var key in obj){
-		// 			var arr = obj[key].split("~");
-		// 			var temp = {
-		// 				key : key,
-		// 				name : arr[1],
-		// 				code : arr[2],
-		// 				price : arr[3],
-		// 				Pricetobookratio : arr[46],
-		// 				pe_lyr : "---",
-		// 				pe_ttm : (arr[39] ? arr[39] : '0.00'),
-		// 				growRate : arr[32] + '%',
-		// 				hands : (arr[38] ? arr[38] : '0.00') + '%',
-		// 				className : ''
-		// 			}
-		// 			if(arr[3] == '0.00'){
-		// 				temp.price = "停牌";
-		// 				temp.growRate = '--';
-		// 				temp.hands = '--';
-		// 				temp.Pricetobookratio = '--';
-		// 				temp.pe_lyr = '--';
-		// 				temp.pe_ttm = '--';
-		// 			}
-		// 			if(parseFloat(temp.growRate) > 0){
-		// 				temp.className = 'increase';
-		// 			}else if(parseFloat(temp.growRate) < 0){
-		// 				temp.className = 'reduce';
-		// 			}
-		// 			data[key] = temp;
-		// 		}
-		// 		console.log(data);
-		// 		callback(data);
-		// 	})
-		// },
 		// 请求雪球数据
 		_loadXueQiuStockData : function(key,callback){
 			$.ajax({
@@ -335,8 +286,8 @@ function getLinkUrl(obj){
 						if(item == undefined || item.find(".price") == undefined){
 							console.log(item)
 						}
-						item.find(".price").html(obj.current?obj.current:"--").removeClass('increase','reduce').addClass(obj.className);
-						item.find(".grow").html(obj.percentage?(obj.percentage+"%"):"--").removeClass('increase','reduce').addClass(obj.className);
+						item.find(".price").html(obj.current?obj.current:"--").removeClass('increase','reduce').addClass(+obj.percentage>0?'increase':'reduce');
+						item.find(".grow").html(obj.percentage?(obj.percentage+"%"):"--").removeClass('increase','reduce').addClass(+obj.percentage>0?'increase':'reduce');
 						item.find(".hands").html(obj.turnover_rate?obj.turnover_rate:"--");
 						item.find(".Pricetobookratio").html(obj.pb?obj.pb:"--");
 						item.find(".pe_lyr").html(obj.pe_lyr?(+obj.pe_lyr).toFixed(2):"--");
@@ -345,32 +296,6 @@ function getLinkUrl(obj){
 
 					cb && cb();
 				});
-				// this._loadStockData(arr.join(","),function(res){
-				// 	var $els = $("#zxg .zxg-list li");
-				//
-				// 	$els.each(function(index,item){
-				// 		var key = item.id;
-				// 		var obj = res['v_' + key];
-				// 		if(!obj){
-				// 			return;
-				// 		}
-				// 		var item = $(item);
-				// 		if(!item.attr("id")){
-				// 			return;
-				// 		}
-				// 		if(item == undefined || item.find(".price") == undefined){
-				// 			console.log(item)
-				// 		}
-				// 		item.find(".price").html(obj.price).removeClass('increase','reduce').addClass(obj.className);
-				// 		item.find(".grow").html(obj.growRate).removeClass('increase','reduce').addClass(obj.className);
-				// 		item.find(".hands").html(obj.hands);
-				// 		item.find(".Pricetobookratio").html(obj.Pricetobookratio);
-				// 		item.find(".pe_lyr").html(obj.pe_lyr);
-				// 		item.find(".pe_ttm").html(obj.pe_ttm);
-				// 	});
-				//
-				// 	cb && cb();
-				// });
 			}
 		},
 		initDom : function(){
