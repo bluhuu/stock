@@ -504,8 +504,6 @@
 					dataType : 'jsonp'
 				});
 			}
-
-
 		},
 
 		/*=================工具方法=====================*/
@@ -526,7 +524,6 @@
 				return t.config.elements[key];
 			}
 		}
-
 	};
 
 	win.Suggest = Suggest;
