@@ -324,7 +324,7 @@ function getLinkUrl(obj){
 
 					$els.each(function(index,item){
 						var key = item.id;
-						var obj = res['v_' + key];
+						var obj = res[key.toUpperCase()];
 						if(!obj){
 							return;
 						}
@@ -335,12 +335,12 @@ function getLinkUrl(obj){
 						if(item == undefined || item.find(".price") == undefined){
 							console.log(item)
 						}
-						item.find(".price").html(obj.price).removeClass('increase','reduce').addClass(obj.className);
-						item.find(".grow").html(obj.growRate).removeClass('increase','reduce').addClass(obj.className);
-						item.find(".hands").html(obj.hands);
-						item.find(".Pricetobookratio").html(obj.Pricetobookratio);
-						item.find(".pe_lyr").html(obj.pe_lyr);
-						item.find(".pe_ttm").html(obj.pe_ttm);
+						item.find(".price").html(obj.current?obj.current:"--").removeClass('increase','reduce').addClass(obj.className);
+						item.find(".grow").html(obj.percentage?(obj.percentage+"%"):"--").removeClass('increase','reduce').addClass(obj.className);
+						item.find(".hands").html(obj.turnover_rate?obj.turnover_rate:"--");
+						item.find(".Pricetobookratio").html(obj.pb?obj.pb:"--");
+						item.find(".pe_lyr").html(obj.pe_lyr?(+obj.pe_lyr).toFixed(2):"--");
+						item.find(".pe_ttm").html(obj.pe_ttm?(+obj.pe_ttm).toFixed(2):"--");
 					});
 
 					cb && cb();
