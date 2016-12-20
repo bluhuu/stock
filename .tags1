@@ -42,8 +42,6 @@ switch	D:\bluhuu\stock\stock.js	/^		switch(obj.type){$/;"	function	line:134
 getLinkUrl	D:\bluhuu\stock\stock.js	/^function getLinkUrl(obj){$/;"	function	line:128
 Stock.name	D:\bluhuu\stock\stock.js	/^		name : LocalData.name,$/;"	property	line:174
 _renderStockStruct	D:\bluhuu\stock\stock.js	/^		_renderStockStruct : function(obj){$/;"	function	line:176
-_loadStockData	D:\bluhuu\stock\stock.js	/^		_loadStockData : function(key,callback){$/;"	function	line:192
-ajax	D:\bluhuu\stock\stock.js	/^			ajax(url,function(res){$/;"	function	line:195
 _loadXueQiuStockData	D:\bluhuu\stock\stock.js	/^		_loadXueQiuStockData : function(key,callback){$/;"	function	line:241
 success	D:\bluhuu\stock\stock.js	/^					success: function(json, textStatus){$/;"	function	line:250
 error	D:\bluhuu\stock\stock.js	/^					error: function(XMLHttpRequest, textStatus, errorThrown) {$/;"	function	line:255
@@ -55,18 +53,18 @@ addStockData	D:\bluhuu\stock\stock.js	/^		addStockData : function(obj){$/;"	func
 sHtml	D:\bluhuu\stock\stock.js	/^			var sHtml = tmpl(sTplList,obj);$/;"	variable	line:307
 updateStockData	D:\bluhuu\stock\stock.js	/^		updateStockData : function(cb){$/;"	function	line:311
 NUM	D:\bluhuu\stock\stock.js	/^			var NUM = 30;	\/\/ 每30个一组发请求$/;"	variable	line:313
-initDom	D:\bluhuu\stock\stock.js	/^		initDom : function(){$/;"	function	line:351
-remark	D:\bluhuu\stock\stock.js	/^		remark : function(info,cb){$/;"	function	line:360
-_bindEvent	D:\bluhuu\stock\stock.js	/^		_bindEvent : function(){$/;"	function	line:363
-timerTrend	D:\bluhuu\stock\stock.js	/^			var timerTrend = null;$/;"	variable	line:411
-activate	D:\bluhuu\stock\stock.js	/^				activate : function(event,ui){$/;"	function	line:446
-deactivate	D:\bluhuu\stock\stock.js	/^				deactivate : function(event,ui){$/;"	function	line:449
-init	D:\bluhuu\stock\stock.js	/^		init : function(){$/;"	function	line:455
-timer	D:\bluhuu\stock\stock.js	/^	var timer = null;$/;"	variable	line:463
-startRender	D:\bluhuu\stock\stock.js	/^	function startRender(){$/;"	function	line:464
-startRender	D:\bluhuu\stock\stock.js	/^	function startRender(){$/;"	function	line:464
-base	D:\bluhuu\stock\stock.js	/^		var base = curTime.getFullYear() + '\/' + (curTime.getMonth() + 1) + '\/' + curTime.getDate() + ' ';$/;"	variable	line:476
-startAM	D:\bluhuu\stock\stock.js	/^		var startAM = base + '09:15:00'; \/\/ 早盘开盘时间$/;"	variable	line:477
-endAM	D:\bluhuu\stock\stock.js	/^		var endAM = base + '11:30:00';	\/\/ 早盘开盘时间$/;"	variable	line:478
-startPM	D:\bluhuu\stock\stock.js	/^		var startPM = base + '13:00:00';	\/\/ 午盘开盘时间$/;"	variable	line:479
-endPM	D:\bluhuu\stock\stock.js	/^		var endPM = base + '15:00:00';	\/\/ 午盘闭盘时间$/;"	variable	line:480
+initDom	D:\bluhuu\stock\stock.js	/^		initDom : function(){$/;"	function	line:376
+remark	D:\bluhuu\stock\stock.js	/^		remark : function(info,cb){$/;"	function	line:385
+_bindEvent	D:\bluhuu\stock\stock.js	/^		_bindEvent : function(){$/;"	function	line:388
+timerTrend	D:\bluhuu\stock\stock.js	/^			var timerTrend = null;$/;"	variable	line:436
+activate	D:\bluhuu\stock\stock.js	/^				activate : function(event,ui){$/;"	function	line:471
+deactivate	D:\bluhuu\stock\stock.js	/^				deactivate : function(event,ui){$/;"	function	line:474
+init	D:\bluhuu\stock\stock.js	/^		init : function(){$/;"	function	line:480
+timer	D:\bluhuu\stock\stock.js	/^	var timer = null;$/;"	variable	line:488
+startRender	D:\bluhuu\stock\stock.js	/^	function startRender(){$/;"	function	line:489
+startRender	D:\bluhuu\stock\stock.js	/^	function startRender(){$/;"	function	line:489
+base	D:\bluhuu\stock\stock.js	/^		var base = curTime.getFullYear() + '\/' + (curTime.getMonth() + 1) + '\/' + curTime.getDate() + ' ';$/;"	variable	line:501
+startAM	D:\bluhuu\stock\stock.js	/^		var startAM = base + '09:15:00'; \/\/ 早盘开盘时间$/;"	variable	line:502
+endAM	D:\bluhuu\stock\stock.js	/^		var endAM = base + '11:30:00';	\/\/ 早盘开盘时间$/;"	variable	line:503
+startPM	D:\bluhuu\stock\stock.js	/^		var startPM = base + '13:00:00';	\/\/ 午盘开盘时间$/;"	variable	line:504
+endPM	D:\bluhuu\stock\stock.js	/^		var endPM = base + '15:00:00';	\/\/ 午盘闭盘时间$/;"	variable	line:505
