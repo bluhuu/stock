@@ -289,7 +289,7 @@ function getLinkUrl(obj){
 						item.find(".price").html(obj.current?obj.current:"--").removeClass('increase','reduce').addClass(+obj.percentage>0?'increase':'reduce');
 						item.find(".grow").html(obj.percentage?(obj.percentage+"%"):"--").removeClass('increase','reduce').addClass(+obj.percentage>0?'increase':'reduce');
 						item.find(".hands").html(obj.turnover_rate?obj.turnover_rate:"--");
-						item.find(".Pricetobookratio").html(obj.pb?obj.pb:"--");
+						item.find(".Pricetobookratio").html(+obj.pb>0?obj.pb:"--");
 						item.find(".pe_lyr").html(obj.pe_lyr?(+obj.pe_lyr).toFixed(2):"--");
 						item.find(".pe_ttm").html(obj.pe_ttm?(+obj.pe_ttm).toFixed(2):"--");
 					});
