@@ -4,67 +4,70 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-map	D:\bluhuu\stock\stock.js	/^		map : {},$/;"	property	line:3
-localName	D:\bluhuu\stock\stock.js	/^	var localName = "stock_list";$/;"	variable	line:7
-sync2Local	D:\bluhuu\stock\stock.js	/^	var sync2Local = function(){$/;"	function	line:8
-sync2Local.obj.value	D:\bluhuu\stock\stock.js	/^			value : data2Local,$/;"	property	line:15
-sync2Local.obj.lastUpdate	D:\bluhuu\stock\stock.js	/^			lastUpdate : +new Date()$/;"	property	line:16
-sync2Local	D:\bluhuu\stock\stock.js	/^	var sync2Local = function(){$/;"	function	line:8
-saveItem	D:\bluhuu\stock\stock.js	/^	var saveItem = function(obj){$/;"	function	line:20
-saveItem	D:\bluhuu\stock\stock.js	/^	var saveItem = function(obj){$/;"	function	line:20
-editItem	D:\bluhuu\stock\stock.js	/^	var editItem = function(obj){$/;"	function	line:25
-editItem	D:\bluhuu\stock\stock.js	/^	var editItem = function(obj){$/;"	function	line:25
-removeItem	D:\bluhuu\stock\stock.js	/^	var removeItem = function(key){$/;"	function	line:29
-removeItem	D:\bluhuu\stock\stock.js	/^	var removeItem = function(key){$/;"	function	line:29
-sortItem	D:\bluhuu\stock\stock.js	/^	var sortItem = function(queue){$/;"	function	line:38
-sortItem	D:\bluhuu\stock\stock.js	/^	var sortItem = function(queue){$/;"	function	line:38
-getLocalData	D:\bluhuu\stock\stock.js	/^	function getLocalData(){$/;"	function	line:50
-getLocalData	D:\bluhuu\stock\stock.js	/^	function getLocalData(){$/;"	function	line:50
-LocalData.name	D:\bluhuu\stock\stock.js	/^		name : "stock_list",$/;"	property	line:72
-add	D:\bluhuu\stock\stock.js	/^		add : function(obj, cb){$/;"	function	line:73
-LocalData.add	D:\bluhuu\stock\stock.js	/^		add : function(obj, cb){$/;"	method	line:73
-remove	D:\bluhuu\stock\stock.js	/^		remove : function(key, cb){$/;"	function	line:79
-LocalData.remove	D:\bluhuu\stock\stock.js	/^		remove : function(key, cb){$/;"	method	line:79
-edit	D:\bluhuu\stock\stock.js	/^		edit : function(obj,cb){$/;"	function	line:85
-LocalData.edit	D:\bluhuu\stock\stock.js	/^		edit : function(obj,cb){$/;"	method	line:85
-getAll	D:\bluhuu\stock\stock.js	/^		getAll : function(cb){$/;"	function	line:91
-LocalData.getAll	D:\bluhuu\stock\stock.js	/^		getAll : function(cb){$/;"	method	line:91
-getKeys	D:\bluhuu\stock\stock.js	/^		getKeys : function(){$/;"	function	line:103
-LocalData.getKeys	D:\bluhuu\stock\stock.js	/^		getKeys : function(){$/;"	method	line:103
-num	D:\bluhuu\stock\stock.js	/^		num : function(){$/;"	function	line:106
-LocalData.num	D:\bluhuu\stock\stock.js	/^		num : function(){$/;"	method	line:106
-isExist	D:\bluhuu\stock\stock.js	/^		isExist : function(key){$/;"	function	line:109
-LocalData.isExist	D:\bluhuu\stock\stock.js	/^		isExist : function(key){$/;"	method	line:109
-sort	D:\bluhuu\stock\stock.js	/^		sort : function(queue,cb){$/;"	function	line:115
-LocalData.sort	D:\bluhuu\stock\stock.js	/^		sort : function(queue,cb){$/;"	method	line:115
-getLinkUrl	D:\bluhuu\stock\stock.js	/^function getLinkUrl(obj){$/;"	function	line:128
-switch	D:\bluhuu\stock\stock.js	/^		switch(obj.type){$/;"	function	line:134
-getLinkUrl	D:\bluhuu\stock\stock.js	/^function getLinkUrl(obj){$/;"	function	line:128
-Stock.name	D:\bluhuu\stock\stock.js	/^		name : LocalData.name,$/;"	property	line:174
-_renderStockStruct	D:\bluhuu\stock\stock.js	/^		_renderStockStruct : function(obj){$/;"	function	line:176
-_loadXueQiuStockData	D:\bluhuu\stock\stock.js	/^		_loadXueQiuStockData : function(key,callback){$/;"	function	line:192
-success	D:\bluhuu\stock\stock.js	/^					success: function(json, textStatus){$/;"	function	line:201
-error	D:\bluhuu\stock\stock.js	/^					error: function(XMLHttpRequest, textStatus, errorThrown) {$/;"	function	line:206
-addStock	D:\bluhuu\stock\stock.js	/^		addStock : function(queryObj){$/;"	function	line:212
-obj	D:\bluhuu\stock\stock.js	/^			var obj = $.extend({}, queryObj);$/;"	variable	line:224
-sortStock	D:\bluhuu\stock\stock.js	/^		sortStock : function(cb){$/;"	function	line:232
-queue	D:\bluhuu\stock\stock.js	/^			var queue = [];$/;"	variable	line:234
-addStockData	D:\bluhuu\stock\stock.js	/^		addStockData : function(obj){$/;"	function	line:252
-sHtml	D:\bluhuu\stock\stock.js	/^			var sHtml = tmpl(sTplList,obj);$/;"	variable	line:258
-updateStockData	D:\bluhuu\stock\stock.js	/^		updateStockData : function(cb){$/;"	function	line:262
-NUM	D:\bluhuu\stock\stock.js	/^			var NUM = 30;	\/\/ 每30个一组发请求$/;"	variable	line:264
-initDom	D:\bluhuu\stock\stock.js	/^		initDom : function(){$/;"	function	line:301
-remark	D:\bluhuu\stock\stock.js	/^		remark : function(info,cb){$/;"	function	line:310
-_bindEvent	D:\bluhuu\stock\stock.js	/^		_bindEvent : function(){$/;"	function	line:313
-timerTrend	D:\bluhuu\stock\stock.js	/^			var timerTrend = null;$/;"	variable	line:361
-activate	D:\bluhuu\stock\stock.js	/^				activate : function(event,ui){$/;"	function	line:396
-deactivate	D:\bluhuu\stock\stock.js	/^				deactivate : function(event,ui){$/;"	function	line:399
-init	D:\bluhuu\stock\stock.js	/^		init : function(){$/;"	function	line:405
-timer	D:\bluhuu\stock\stock.js	/^	var timer = null;$/;"	variable	line:413
-startRender	D:\bluhuu\stock\stock.js	/^	function startRender(){$/;"	function	line:414
-startRender	D:\bluhuu\stock\stock.js	/^	function startRender(){$/;"	function	line:414
-base	D:\bluhuu\stock\stock.js	/^		var base = curTime.getFullYear() + '\/' + (curTime.getMonth() + 1) + '\/' + curTime.getDate() + ' ';$/;"	variable	line:426
-startAM	D:\bluhuu\stock\stock.js	/^		var startAM = base + '09:15:00'; \/\/ 早盘开盘时间$/;"	variable	line:427
-endAM	D:\bluhuu\stock\stock.js	/^		var endAM = base + '11:30:00';	\/\/ 早盘开盘时间$/;"	variable	line:428
-startPM	D:\bluhuu\stock\stock.js	/^		var startPM = base + '13:00:00';	\/\/ 午盘开盘时间$/;"	variable	line:429
-endPM	D:\bluhuu\stock\stock.js	/^		var endPM = base + '15:00:00';	\/\/ 午盘闭盘时间$/;"	variable	line:430
+html	D:\bluhuu\stock\index.html	/^<html>$/;"	function	line:2
+head	D:\bluhuu\stock\index.html	/^<head>$/;"	function	line:3
+meta	D:\bluhuu\stock\index.html	/^	<meta charset="utf-8">$/;"	function	line:4
+link	D:\bluhuu\stock\index.html	/^	<link rel="stylesheet" href="app.css">$/;"	function	line:5
+link	D:\bluhuu\stock\index.html	/^	<link rel="stylesheet" href="jquery-ui.css">$/;"	function	line:6
+body	D:\bluhuu\stock\index.html	/^<body>$/;"	function	line:8
+div	D:\bluhuu\stock\index.html	/^	<div id="setting">$/;"	function	line:10
+div	D:\bluhuu\stock\index.html	/^			<div class="title">选择浏览器显示图标<\/div>$/;"	function	line:11
+div	D:\bluhuu\stock\index.html	/^			<div class="iconlist"><\/div>$/;"	function	line:12
+span	D:\bluhuu\stock\index.html	/^			<span class="close">X<\/span>$/;"	function	line:13
+a	D:\bluhuu\stock\index.html	/^			<a href="#" class="default">使用默认图标<\/a>$/;"	function	line:14
+ul	D:\bluhuu\stock\index.html	/^	<ul class="nav-tabs">$/;"	function	line:16
+li	D:\bluhuu\stock\index.html	/^		<li class="tab on" data-type="default"><a href="#">我的自选<\/a><\/li>$/;"	function	line:17
+li	D:\bluhuu\stock\index.html	/^		<li class="tab"><a href="http:\/\/lhb.stock360.cn" target="_blank">龙虎榜<\/a><\/li>$/;"	function	line:18
+li	D:\bluhuu\stock\index.html	/^		<li class="tab"><a href="http:\/\/lhb.stock360.cn\/dz" target="_blank">破定增价股<\/a><\/li>$/;"	function	line:19
+li	D:\bluhuu\stock\index.html	/^		<li class="tab"><a href="#" class="setting">个人设置<\/a><\/li>$/;"	function	line:20
+div	D:\bluhuu\stock\index.html	/^	<div class="tab-content">$/;"	function	line:22
+div	D:\bluhuu\stock\index.html	/^		<div class="tab-pane on">$/;"	function	line:23
+form	D:\bluhuu\stock\index.html	/^			<form id="search" action="http:\/\/www.so.com\/s" method="get" target="_self">$/;"	function	line:24
+div	D:\bluhuu\stock\index.html	/^				<div class="search">$/;"	function	line:25
+div	D:\bluhuu\stock\index.html	/^					<div class="search-input">$/;"	function	line:26
+input	D:\bluhuu\stock\index.html	/^						<input type="text" id="input" name="q" placeholder="代码\/名称\/拼音">$/;"	function	line:27
+div	D:\bluhuu\stock\index.html	/^					<div class="search-button">$/;"	function	line:29
+input	D:\bluhuu\stock\index.html	/^						<input type="submit" value="搜索">$/;"	function	line:30
+div	D:\bluhuu\stock\index.html	/^			<div id="zxg">$/;"	function	line:34
+div	D:\bluhuu\stock\index.html	/^				<div class="loading"><img src="images\/loading.gif" alt=""><\/div>$/;"	function	line:35
+div	D:\bluhuu\stock\index.html	/^				<div class="zxg-stock">$/;"	function	line:36
+div	D:\bluhuu\stock\index.html	/^					<div class="zxg-hd gclearfix">$/;"	function	line:37
+span	D:\bluhuu\stock\index.html	/^						<span class="top">置顶<\/span>$/;"	function	line:38
+span	D:\bluhuu\stock\index.html	/^						<span class="name">名称(代码)<\/span>$/;"	function	line:39
+span	D:\bluhuu\stock\index.html	/^						<span class="price">最新价<\/span>$/;"	function	line:40
+span	D:\bluhuu\stock\index.html	/^						<span class="grow">涨跌幅<\/span>$/;"	function	line:41
+span	D:\bluhuu\stock\index.html	/^						<span class="hands">换手率<\/span>$/;"	function	line:42
+span	D:\bluhuu\stock\index.html	/^						<span class="Pricetobookratio">市净率<\/span>$/;"	function	line:43
+span	D:\bluhuu\stock\index.html	/^						<span class="pe_ttm">市盈率-静<\/span>$/;"	function	line:44
+span	D:\bluhuu\stock\index.html	/^						<span class="pe_lyr">市盈率-动<\/span>$/;"	function	line:45
+span	D:\bluhuu\stock\index.html	/^						<span class="remark">备注<\/span>$/;"	function	line:46
+span	D:\bluhuu\stock\index.html	/^						<span class="delete">删除<\/span>$/;"	function	line:47
+div	D:\bluhuu\stock\index.html	/^					<div class="zxg-bd">$/;"	function	line:49
+ul	D:\bluhuu\stock\index.html	/^						<ul class="zxg-list">$/;"	function	line:50
+div	D:\bluhuu\stock\index.html	/^					<div class="tipStock"><span class="ok"><\/span>列表保存已成功<\/div>$/;"	function	line:53
+div	D:\bluhuu\stock\index.html	/^		<div class="tab-pane">$/;"	function	line:57
+ul	D:\bluhuu\stock\index.html	/^			<ul class="stockList">$/;"	function	line:58
+li	D:\bluhuu\stock\index.html	/^				<li class="item head">$/;"	function	line:59
+span	D:\bluhuu\stock\index.html	/^					<span class="title">股票名称(代码)<\/span>$/;"	function	line:60
+span	D:\bluhuu\stock\index.html	/^					<span class="rating">推荐星级<\/span>$/;"	function	line:61
+span	D:\bluhuu\stock\index.html	/^					<span class="type">类型<\/span>$/;"	function	line:62
+span	D:\bluhuu\stock\index.html	/^					<span class="topic">概念<\/span>$/;"	function	line:63
+div	D:\bluhuu\stock\index.html	/^		<div class="tab-pane">$/;"	function	line:67
+ul	D:\bluhuu\stock\index.html	/^			<ul class="weixin" id="weixin">$/;"	function	line:68
+div	D:\bluhuu\stock\index.html	/^	<div class="remark-form">$/;"	function	line:74
+div	D:\bluhuu\stock\index.html	/^		<div class="remark-hd">$/;"	function	line:75
+span	D:\bluhuu\stock\index.html	/^			<span class="name"><\/span>(<span class="code"><\/span>) 当前股价:<span class="price"><\/span>$/;"	function	line:76
+span	D:\bluhuu\stock\index.html	/^			<span class="close">X<\/span>$/;"	function	line:77
+div	D:\bluhuu\stock\index.html	/^		<div class="remark-bd">$/;"	function	line:79
+textarea	D:\bluhuu\stock\index.html	/^			<textarea id="remark" placeholder="请输入您的购入理由和目标价位..."><\/textarea>$/;"	function	line:80
+input	D:\bluhuu\stock\index.html	/^			<input type="hidden" id="remark-key" value="">$/;"	function	line:81
+input	D:\bluhuu\stock\index.html	/^			<input type="button" class="btn" value="提交">$/;"	function	line:82
+div	D:\bluhuu\stock\index.html	/^	<div class="mask"><\/div>$/;"	function	line:85
+div	D:\bluhuu\stock\index.html	/^	<div id="warning" ><\/div>$/;"	function	line:86
+script	D:\bluhuu\stock\index.html	/^	<script src="jquery_1102.js"><\/script>$/;"	function	line:88
+script	D:\bluhuu\stock\index.html	/^	<script src="jquery-ui.js"><\/script>$/;"	function	line:89
+script	D:\bluhuu\stock\index.html	/^	<script src="libs\\jquery.zclip.js"><\/script>$/;"	function	line:90
+script	D:\bluhuu\stock\index.html	/^	<script src="util.js"><\/script>$/;"	function	line:91
+script	D:\bluhuu\stock\index.html	/^	<script src="suggest.js"><\/script>$/;"	function	line:92
+script	D:\bluhuu\stock\index.html	/^	<script src="stock.js"><\/script>$/;"	function	line:93
+script	D:\bluhuu\stock\index.html	/^	<script src="app.js"><\/script>$/;"	function	line:94
