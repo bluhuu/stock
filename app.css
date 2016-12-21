@@ -246,7 +246,7 @@ body{
 .zxg-stock .pe_lyr{width:70px;}
 .zxg-stock .delete{
 	width:45px;
-}	
+}
 .zxg-stock .zxg-list .remark,
 .zxg-stock .zxg-list .delete,
 .zxg-stock .zxg-list .remarked{
@@ -573,5 +573,8 @@ body{
 	position: absolute;
 	top:15px;
 	left:160px;
-
+}
+#zxg{
+	/*display: none;*/
+	visibility: hidden;
 }

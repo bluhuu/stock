@@ -17,11 +17,10 @@ var ajax = function(url,callback){
 			// var ret = eval("(" + XHR.responseText + ")");
 			// var ret = new Function("return " + XHR.responseText )();
 			// extension中不能使用eval，new Function等方法
-			callback( unescape( XHR.responseText.replace(/\\/ig, '%') ) ); 
+			callback( unescape( XHR.responseText.replace(/\\/ig, '%') ) );
 		}
 	}
 	XHR.send(null);
-
 }
 // 简易模板
 var htmlEscape = function(s) {
