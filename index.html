@@ -85,16 +85,28 @@
 	<div id="warning" ></div>
 	<div id="canvasDiv" class="extra1" role="echart" style="width:500px;height:400px;"></div>
 </body>
-	<script src="jquery_1102.js"></script>
-	<!-- <script type="text/javascript" src="asset/lib/jquery.min.js"></script> -->
-	<script src="jquery-ui.js"></script>
-	<script src="libs\jquery.zclip.js"></script>
-	<script src="util.js"></script>
-	<script src="suggest.js"></script>
-	<script src="stock.js"></script>
-	<script src="app.js"></script>
-	<script type="text/javascript" src="asset/lib/echarts.js"></script>
-	<script type="text/javascript">
+	<script src ="jquery_1102.js"></script>
+	<script src ="jquery-ui.js"></script>
+	<script src ="libs\jquery.zclip.js"></script>
+	<script src ="util.js"></script>
+	<script src ="suggest.js"></script>
+	<script src ="stock.js"></script>
+	<script src ="app.js"></script>
+	<script src ="asset/lib/echarts.js"></script>
+	<script src ="asset/lib/moment.js"></script>
+
+	<script type ="text/javascript">
+		// --- tools ---------------------------------------------------------
+		function unique(arr) {
+			var result=[];
+			for(var i=0; i<arr.length; i++){
+				if(result.indexOf(arr[i])==-1){
+					result.push(arr[i])
+				}
+			}
+			return result;
+		}
+		// ------------------------------------------------------------
 		var worldMapContainer = document.getElementById('canvasDiv');
 		var myChart = echarts.init(worldMapContainer);
 
@@ -106,30 +118,48 @@
 			{ value: '销售退货',textStyle: {fontSize: 22,fontWeight:'normal',color: 'black'}}
 		];
 		//--- 统计数据抽取 --------------------------------------------------------------------------------------------------------------
-		function fetchColRows(){
-			var resultData;
+		function fetchData(url,symbol,size,callback){
 			$.ajax({
-		            type: "GET",
-		            url: "elink_csp_web/tVAction/queryDetail.do",
-		            cache : false,
-		            data: {floor:4},
-		            async: false,
-		            dataType: "json",
-		            success: function(result) {
-	            		//异常判断与处理
-	            		if (result.errorCode) {
-	            			console.log("查询失败。错误码："+result.errorCode);
-	            			return;
+					url: url,
+					dataType: "jsonp",
+					data: {
+						symbol:symbol,
+						size:size,
+						page:1,
+						_:new Date()
+					},
+					success: function(json, textStatus){
+						if(textStatus == "success"){
+							callback(json);
 						}
-
-						resultData = result;
-		            },
-		            error: function(XMLHttpRequest, textStatus, errorThrown) {
-		                console.log("查询失败");
-		            }
-		        });
-			return resultData;
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log("查询失败: ",XMLHttpRequest);
+					}
+				});
 		}
+
+		function extrFinmainindex(json){
+			var reportdatelist = json.list.map(function(value,index,arr){
+				return {
+					xAxisdata:moment(value.reportdate,"YYYYMMDD").format("YYYY"),
+					seriesname:moment(value.reportdate,"YYYYMMDD").format("MM")
+				};
+			});
+			console.log("xAxisdata: ",unique(reportdatelist.map(function(value){return value.xAxisdata}))
+										.sort(function(a,b){return b-a;})
+			);
+			console.log("seriesname: ",unique(reportdatelist.map(function(value){return value.seriesname}))
+										.sort(function(a,b){return b-a;})
+										.map(function(value){return value+"月"})
+			);
+			console.log("jsonObjectKeysList: ",Object.keys(json.list[0]));
+
+			var item = Object.keys(json.list[0])[3];
+ 			console.log( item, json.list.map(function(value,index,arr){ return value[item]; }) );
+
+		}
+		fetchData("https://xueqiu.com/stock/f10/finmainindex.json","SH600366",20,extrFinmainindex);
 		function getchartdata1() {
 			var collectrows = fetchColRows().collectrows[0];
 		    return [{
@@ -179,7 +209,7 @@
 		        }
 		    },
 		    legend: {
-		        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎','百度','谷歌','必应','其他']
+		        data:['三月','六月','九月','十二月']
 		    },
 		    grid: {
 		        left: '3%',
@@ -190,7 +220,7 @@
 		    xAxis : [
 		        {
 		            type : 'category',
-		            data : ['周一','周二','周三','周四','周五','周六','周日']
+		            data : ['周一','周二','周三','周四','周五','周六','周日']//年
 		        }
 		    ],
 		    yAxis : [
@@ -199,23 +229,6 @@
 		        }
 		    ],
 		    series : [
-		        {
-		            name:'直接访问',
-		            type:'bar',
-		            data:[320, 332, 301, 334, 390, 330, 320]
-		        },
-		        {
-		            name:'邮件营销',
-		            type:'bar',
-		            stack: '广告',
-		            data:[120, 132, 101, 134, 90, 230, 210]
-		        },
-		        {
-		            name:'联盟广告',
-		            type:'bar',
-		            stack: '广告',
-		            data:[220, 182, 191, 234, 290, 330, 310]
-		        },
 		        {
 		            name:'视频广告',
 		            type:'bar',
@@ -249,18 +262,6 @@
 		            type:'bar',
 		            stack: '搜索引擎',
 		            data:[120, 132, 101, 134, 290, 230, 220]
-		        },
-		        {
-		            name:'必应',
-		            type:'bar',
-		            stack: '搜索引擎',
-		            data:[60, 72, 71, 74, 190, 130, 110]
-		        },
-		        {
-		            name:'其他',
-		            type:'bar',
-		            stack: '搜索引擎',
-		            data:[62, 82, 91, 84, 109, 110, 120]
 		        }
 		    ]
 		};
