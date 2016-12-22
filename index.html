@@ -135,12 +135,25 @@
 				xAxis : [
 					{
 						type : 'category',
-						data : chartdata.xAxisdata
+						data : chartdata.xAxisdata,
+						axisLabel: {
+							interval: 0,
+							margin:10,
+							rotate:40
+						}
 					}
 				],
 				yAxis : [
 					{
-						type : 'value'
+						type : 'value',
+						axisLabel: {
+				            formatter: function (value, index) {
+				                return value/10000+" 亿";
+				            },
+				            textStyle: {
+				                color: '#999'
+				            }
+				        }
 					}
 				],
 				series : [
@@ -239,7 +252,9 @@
 			var chartdata = extrData(json);
 			chart('extra2',chartdata,"biztotcost");
 		}
-		fetchData("https://xueqiu.com/stock/f10/finmainindex.json","sz300223",24,finmainindex);
-		fetchData("https://xueqiu.com/stock/f10/incstatement.json","sz300223",24,incstatement);
+		$(function(){
+			fetchData("https://xueqiu.com/stock/f10/finmainindex.json","sz300223",40,finmainindex);
+			fetchData("https://xueqiu.com/stock/f10/incstatement.json","sz300223",40,incstatement);
+		});
 	</script>
 </html>
