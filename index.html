@@ -139,27 +139,42 @@
 				});
 		}
 
-		function extrFinmainindex(json){
+		function extrData(json){
 			var reportdatelist = json.list.map(function(value,index,arr){
 				return {
 					xAxisdata:moment(value.reportdate,"YYYYMMDD").format("YYYY"),
 					seriesname:moment(value.reportdate,"YYYYMMDD").format("MM")
 				};
 			});
-			console.log("xAxisdata: ",unique(reportdatelist.map(function(value){return value.xAxisdata}))
-										.sort(function(a,b){return b-a;})
-			);
-			console.log("seriesname: ",unique(reportdatelist.map(function(value){return value.seriesname}))
-										.sort(function(a,b){return b-a;})
-										.map(function(value){return value+"月"})
-			);
+			var xAxisdata = unique(reportdatelist.map(function(value){return value.xAxisdata}))
+										.sort(function(a,b){return b-a;});
+			var seriesname = unique(reportdatelist.map(function(value){return value.seriesname}))
+										.sort(function(a,b){return b-a;});
+			var seriesdatalist=[];
+			for(var i=0;i<seriesname.length;i++){
+				var flag = json.list.filter(function(element){
+					if(moment(element.reportdate,"YYYYMMDD").format("MM") ==seriesname[i]){
+						return true;
+					}
+				});
+				if(moment(flag[0].reportdate,"YYYYMMDD").format("YYYY") != xAxisdata[0]){
+					flag = [{}].concat(flag);
+				}
+				if(moment(flag[flag.length-1].reportdate,"YYYYMMDD").format("YYYY") != xAxisdata[xAxisdata.length-1]){
+					flag = flag.concat([{}]);
+				}
+				seriesdatalist.push(flag);
+			}
+			console.log("xAxisdata: ",xAxisdata);
+			console.log("seriesname: ",seriesname);
+			console.log("seriesdatalist: ",seriesdatalist);
+			console.log("----------------------------------------------------------------------------------");
 			console.log("jsonObjectKeysList: ",Object.keys(json.list[0]));
-
 			var item = Object.keys(json.list[0])[3];
  			console.log( item, json.list.map(function(value,index,arr){ return value[item]; }) );
 
 		}
-		fetchData("https://xueqiu.com/stock/f10/finmainindex.json","SH600366",20,extrFinmainindex);
+		fetchData("https://xueqiu.com/stock/f10/finmainindex.json","SH600366",20,extrData);
 		function getchartdata1() {
 			var collectrows = fetchColRows().collectrows[0];
 		    return [{
