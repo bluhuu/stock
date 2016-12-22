@@ -83,10 +83,10 @@
 	</div>
 	<div class="mask"></div>
 	<div id="warning" ></div>
-	<div id="extra1" class="canvasDiv" role="echart" style="width:500px;height:400px;"></div>
-	<div id="extra2" class="canvasDiv" role="echart" style="width:500px;height:400px;"></div>
-	<div id="extra3" class="canvasDiv" role="echart" style="width:500px;height:400px;"></div>
-	<div id="extra4" class="canvasDiv" role="echart" style="width:500px;height:400px;"></div>
+	<div id="extra1" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
+	<div id="extra2" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
+	<div id="extra3" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
+	<div id="extra4" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
 </body>
 	<script src ="jquery_1102.js"></script>
 	<script src ="jquery-ui.js"></script>
@@ -201,8 +201,8 @@
 		function extrData(json){
 			var reportdatelist = json.list.map(function(value,index,arr){
 				return {
-					xAxisdata:moment(value.reportdate,"YYYYMMDD").format("YYYY"),
-					seriesname:moment(value.reportdate,"YYYYMMDD").format("MM")
+					xAxisdata:moment(value.reportdate || value.publishdate,"YYYYMMDD").format("YYYY"),
+					seriesname:moment(value.reportdate || value.publishdate,"YYYYMMDD").format("MM")
 				};
 			});
 			var xAxisdata = unique(reportdatelist.map(function(value){return value.xAxisdata}))
@@ -212,14 +212,14 @@
 			var seriesdatalist=[];
 			for(var i=0;i<seriesname.length;i++){
 				var flag = json.list.filter(function(element){
-					if(moment(element.reportdate,"YYYYMMDD").format("MM") ==seriesname[i]){
+					if(moment(element.reportdate || element.publishdate,"YYYYMMDD").format("MM") ==seriesname[i]){
 						return true;
 					}
 				});
-				if(moment(flag[0].reportdate,"YYYYMMDD").format("YYYY") != xAxisdata[0]){
+				if(moment(flag[0].reportdate || flag[0].publishdate,"YYYYMMDD").format("YYYY") != xAxisdata[0]){
 					flag = [{}].concat(flag);
 				}
-				if(moment(flag[flag.length-1].reportdate,"YYYYMMDD").format("YYYY") != xAxisdata[xAxisdata.length-1]){
+				if(moment(flag[flag.length-1].reportdate || flag[flag.length-1].publishdate,"YYYYMMDD").format("YYYY") != xAxisdata[xAxisdata.length-1]){
 					flag = flag.concat([{}]);
 				}
 				seriesdatalist.push(flag);
@@ -239,7 +239,7 @@
 			var chartdata = extrData(json);
 			chart('extra2',chartdata,"biztotcost");
 		}
-		// fetchData("https://xueqiu.com/stock/f10/finmainindex.json","SH600366",30,finmainindex);
-		fetchData("https://xueqiu.com/stock/f10/incstatement.json","SH600366",30,incstatement);
+		fetchData("https://xueqiu.com/stock/f10/finmainindex.json","sz300223",24,finmainindex);
+		fetchData("https://xueqiu.com/stock/f10/incstatement.json","sz300223",24,incstatement);
 	</script>
 </html>
