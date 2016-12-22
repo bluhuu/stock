@@ -107,8 +107,7 @@
 			return result;
 		}
 		// ------------------------------------------------------------
-		var worldMapContainer = document.getElementById('canvasDiv');
-		var myChart = echarts.init(worldMapContainer);
+
 
 		var dataname = [
 			{ value: '调拨入库',textStyle: {fontSize: 22,fontWeight:'normal',color: 'black'}},
@@ -172,9 +171,15 @@
 			console.log("jsonObjectKeysList: ",Object.keys(json.list[0]));
 			var item = Object.keys(json.list[0])[3];
  			console.log( item, json.list.map(function(value,index,arr){ return value[item]; }) );
+			var chartdata = {
+				xAxisdata:xAxisdata,
+				seriesname:seriesname.map(function(value){return value+"月"}),
+				seriesdatalist:seriesdatalist
+			};
+			chart('canvasDiv',chartdata,"mainbusincgrowrate");
 
 		}
-		fetchData("https://xueqiu.com/stock/f10/finmainindex.json","SH600366",20,extrData);
+		fetchData("https://xueqiu.com/stock/f10/finmainindex.json","SH600366",30,extrData);
 		function getchartdata1() {
 			var collectrows = fetchColRows().collectrows[0];
 		    return [{
@@ -214,72 +219,71 @@
 		        }
 		    }];
 		}
-
-		// var ColRowsData = getchartdata1();
-		option = {
-		    tooltip : {
-		        trigger: 'axis',
-		        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-		            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-		        }
-		    },
-		    legend: {
-		        data:['三月','六月','九月','十二月']
-		    },
-		    grid: {
-		        left: '3%',
-		        right: '4%',
-		        bottom: '3%',
-		        containLabel: true
-		    },
-		    xAxis : [
-		        {
-		            type : 'category',
-		            data : ['周一','周二','周三','周四','周五','周六','周日']//年
-		        }
-		    ],
-		    yAxis : [
-		        {
-		            type : 'value'
-		        }
-		    ],
-		    series : [
-		        {
-		            name:'视频广告',
-		            type:'bar',
-		            stack: '广告',
-		            data:[150, 232, 201, 154, 190, 330, 410]
-		        },
-		        {
-		            name:'搜索引擎',
-		            type:'bar',
-		            data:[862, 1018, 964, 1026, 1679, 1600, 1570],
-		            markLine : {
-		                lineStyle: {
-		                    normal: {
-		                        type: 'dashed'
-		                    }
-		                },
-		                data : [
-		                    [{type : 'min'}, {type : 'max'}]
-		                ]
-		            }
-		        },
-		        {
-		            name:'百度',
-		            type:'bar',
-		            barWidth : 5,
-		            stack: '搜索引擎',
-		            data:[620, 732, 701, 734, 1090, 1130, 1120]
-		        },
-		        {
-		            name:'谷歌',
-		            type:'bar',
-		            stack: '搜索引擎',
-		            data:[120, 132, 101, 134, 290, 230, 220]
-		        }
-		    ]
-		};
-		myChart.setOption(option);
+		function chart(div,chartdata,item){
+			var worldMapContainer = document.getElementById(div);
+			var myChart = echarts.init(worldMapContainer);
+			option = {
+				tooltip : {
+					trigger: 'axis',
+					axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				legend: {
+					data:chartdata.seriesname
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				xAxis : [
+					{
+						type : 'category',
+						data : chartdata.xAxisdata
+					}
+				],
+				yAxis : [
+					{
+						type : 'value'
+					}
+				],
+				series : [
+					{
+						name:chartdata.seriesname[0],
+						type:'bar',
+						data:chartdata.seriesdatalist[0].map(function(value){return value[item]})
+					},
+					{
+						name:chartdata.seriesname[1],
+						type:'bar',
+						data:chartdata.seriesdatalist[1].map(function(value){return value[item]}),
+						markLine : {
+							lineStyle: {
+								normal: {
+									type: 'dashed'
+								}
+							},
+							data : [
+								[{type : 'min'}, {type : 'max'}]
+							]
+						}
+					},
+					{
+						name:chartdata.seriesname[2],
+						type:'bar',
+						barWidth : 5,
+						data:chartdata.seriesdatalist[2].map(function(value){return value[item]})
+					},
+					{
+						name:chartdata.seriesname[3],
+						type:'bar',
+						data:chartdata.seriesdatalist[3].map(function(value){return value[item]})
+					}
+					]
+				};
+				myChart.setOption(option);
+		}
 	</script>
 </html>
