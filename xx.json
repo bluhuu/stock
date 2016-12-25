@@ -254,7 +254,7 @@ https: //xueqiu.com/S/SH600366/ZYCWZB	//主要财务指标
 			"name": null
 		}]
 	}
-
+http://api.xueqiu.com/stock/f10/balsheet.csv?symbol=SH600795&page=1&size=10000
 https: //xueqiu.com/S/SH600366/GSLRB	//综合损益表
 	https: //xueqiu.com/stock/f10/incstatement.json?symbol=SH600366&page=1&size=2
 	{
