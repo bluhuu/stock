@@ -1,0 +1,48 @@
+# Your keymap
+#
+# Atom keymaps work similarly to style sheets. Just as style sheets use
+# selectors to apply styles to elements, Atom keymaps use selectors to associate
+# keystrokes with events in specific contexts. Unlike style sheets however,
+# each selector can only be declared once.
+#
+# You can create a new keybinding in this file by typing "key" and then hitting
+# tab.
+#
+# Here's an example taken from Atom's built-in keymap:
+#
+# 'atom-text-editor':
+#   'enter': 'editor:newline'
+#
+# 'atom-workspace':
+#   'ctrl-shift-p': 'core:move-up'
+#   'ctrl-p': 'core:move-down'
+#
+# You can find more information about keymaps in these guides:
+# * https://atom.io/docs/latest/using-atom-basic-customization#customizing-key-bindings
+# * https://atom.io/docs/latest/behind-atom-keymaps-in-depth
+#
+# If you're having trouble with your keybindings not working, try the
+# Keybinding Resolver: `Cmd+.` on OS X and `Ctrl+.` on other platforms. See the
+# Debugging Guide for more information:
+# * https://atom.io/docs/latest/hacking-atom-debugging#check-the-keybindings
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# https://atom.io/docs/latest/using-atom-basic-customization#cson
+'atom-text-editor':
+  'ctrl-F12':'atom-html-preview:toggle'
+'.editor':
+  'ctrl-alt-b': 'atom-beautify:beautify-editor'
+'body atom-text-editor.autocomplete-active':
+  'ctrl-p': 'autocomplete-plus:move-up'
+  'ctrl-n': 'autocomplete-plus:move-down'
+  'pageup': 'autocomplete-plus:page-up'
+  'pagedown': 'autocomplete-plus:page-down'
+  'home': 'autocomplete-plus:move-to-top'
+  'end': 'autocomplete-plus:move-to-bottom'
+'body':
+    'ctrl-alt-k':'core:move-up'  #光标向上移动
+    'ctrl-alt-j':'core:move-down' #光标向下移动
+    'ctrl-alt-h':'core:move-left' #光标向左移动
+    'ctrl-alt-l':'core:move-right' #光标向右移动

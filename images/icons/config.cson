@@ -1,0 +1,57 @@
+"*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "0b7f59f6-7da8-43a9-88c7-15803a6e1970"
+  core:
+    autoHideMenuBar: true
+    disabledPackages: [
+      "markdown-preview"
+      "symbols-view"
+      "csslint"
+    ]
+    telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "monokai"
+    ]
+  editor:
+    fontSize: 12
+    preferredLineLength: 120
+    showIndentGuide: true
+    tabLength: 4
+  "exception-reporting":
+    userId: "0f6f14ef-5cf1-db50-35f1-4fe4bacff4ec"
+  minimap:
+    adjustAbsoluteModeHeight: true
+    plugins:
+      bookmarks: true
+      bookmarksDecorationsZIndex: 0
+      cursorline: true
+      cursorlineDecorationsZIndex: 0
+      "find-and-replace": true
+      "find-and-replaceDecorationsZIndex": 0
+      "git-diff": true
+      "git-diffDecorationsZIndex": 0
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+      "minimap-autohide": true
+      "minimap-autohideDecorationsZIndex": 0
+      "minimap-hide": false
+      "minimap-hideDecorationsZIndex": 0
+      selection: true
+      selectionDecorationsZIndex: 0
+  "one-dark-ui":
+    tabSizing: "Minimum"
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    syncHorizontalScroll: true
+  "sync-settings":
+    _analyticsUserId: "b2ea5857-b840-444f-99aa-fc16f2f354f8"
+    _lastBackupHash: "5e96a3181fb5b80cf834b2b9d2444f8ff59099b0"
+    gistId: "8d9b812d65f00901d561d3d3d68ad0e8"
+    personalAccessToken: "42ace3e1746830061c78e770991f111d4d45f64a"
+  welcome:
+    showOnStartup: false
