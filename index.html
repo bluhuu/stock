@@ -1,16 +1,18 @@
 <!doctype html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="app.css">
 	<link rel="stylesheet" href="jquery-ui.css">
 </head>
+
 <body>
 	<div id="setting">
-			<div class="title">选择浏览器显示图标</div>
-			<div class="iconlist"></div>
-			<span class="close">X</span>
-			<a href="#" class="default">使用默认图标</a>
+		<div class="title">选择浏览器显示图标</div>
+		<div class="iconlist"></div>
+		<span class="close">X</span>
+		<a href="#" class="default">使用默认图标</a>
 	</div>
 	<ul class="nav-tabs">
 		<li class="tab on" data-type="default"><a href="#">我的自选</a></li>
@@ -83,180 +85,205 @@
 	</div>
 	
 	<div class="mask"></div>
-	<div id="warning" ></div>
+	<div id="warning"></div>
 	<div id="extra1" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
 	<div id="extra2" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
 	<div id="extra3" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
 	<div id="extra4" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
 </body>
-	<script src ="jquery_1102.js"></script>
-	<script src ="jquery-ui.js"></script>
-	<script src ="libs\jquery.zclip.js"></script>
-	<script src ="util.js"></script>
-	<script src ="suggest.js"></script>
-	<script src ="stock.js"></script>
-	<script src ="app.js"></script>
-	<script src ="asset/lib/echarts.js"></script>
-	<script src ="asset/lib/moment.js"></script>
+<script src="jquery_1102.js"></script>
+<script src="jquery-ui.js"></script>
+<script src="libs\jquery.zclip.js"></script>
+<script src="util.js"></script>
+<script src="suggest.js"></script>
+<script src="stock.js"></script>
+<script src="app.js"></script>
+<script src="asset/lib/echarts.js"></script>
+<script src="asset/lib/moment.js"></script>
+<script data-main="js/app" src="js/lib/require.js"></script>
 
-	<script type ="text/javascript">
-		function unique(arr) {
-			var result=[];
-			for(var i=0; i<arr.length; i++){
-				if(result.indexOf(arr[i])==-1){
-					result.push(arr[i])
-				}
+<script type="text/javascript">
+	function unique(arr) {
+		var result = [];
+		for (var i = 0; i < arr.length; i++) {
+			if (result.indexOf(arr[i]) == -1) {
+				result.push(arr[i])
 			}
-			return result;
 		}
-		function chart(div,chartdata,item){
-			var worldMapContainer = document.getElementById(div);
-			var myChart = echarts.init(worldMapContainer);
-			option = {
-				title:{
-					text:item,
-					left: 'center'
-				},
-				tooltip : {
-					trigger: 'axis',
-					axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-						type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+		return result;
+	}
+
+	function chart(div, chartdata, DtaInfo,item,json) {
+		var worldMapContainer = document.getElementById(div);
+		var myChart = echarts.init(worldMapContainer);
+		option = {
+			title: {
+				text: (function(){
+					if(json.comptype){
+						return (DtaInfo && DtaInfo[json.comptype][item]) || item;
+					}else{
+						return (DtaInfo && DtaInfo[item]) || item;
 					}
-				},
-				legend: {
-					show:false,
-					data:chartdata.seriesname
-				},
-				grid: {
-					left: '0%',
-					right: '0%',
-					bottom: '3%',
-					containLabel: true
-				},
-				xAxis : [
-					{
-						type : 'category',
-						data : chartdata.xAxisdata,
-						axisLabel: {
-							interval: 0,
-							margin:10,
-							rotate:40
+				})(),
+				left: 'center'
+			},
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: { // 坐标轴指示器，坐标轴触发有效
+					type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+				}
+			},
+			legend: {
+				show: false,
+				data: chartdata.seriesname
+			},
+			grid: {
+				left: '0%',
+				right: '0%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis: [{
+				type: 'category',
+				data: chartdata.xAxisdata,
+				axisLabel: {
+					interval: 0,
+					margin: 10,
+					rotate: 40
+				}
+			}],
+			yAxis: [{
+				type: 'value',
+				axisLabel: {
+					formatter: function(value, index) {
+						return value / 10000 + " 亿";
+					},
+					textStyle: {
+						color: '#999',
+						fontStyle: 'italic',
+					}
+				}
+			}],
+			series: [{
+				name: chartdata.seriesname[0],
+				type: 'bar',
+				data: chartdata.seriesdatalist[0].map(function(value) {
+					return value[item]
+				}),
+				markLine: {
+					lineStyle: {
+						normal: {
+							type: 'dashed'
 						}
-					}
-				],
-				yAxis : [
-					{
-						type : 'value',
-						axisLabel: {
-				            formatter: function (value, index) {
-				                return value/10000+" 亿";
-				            },
-				            textStyle: {
-				                color: '#999',
-								fontStyle:'italic',
-				            }
-				        }
-					}
-				],
-				series : [
-					{
-						name:chartdata.seriesname[0],
-						type:'bar',
-						data:chartdata.seriesdatalist[0].map(function(value){return value[item]}),
-						markLine : {
-							lineStyle: {
-								normal: {
-									type: 'dashed'
-								}
-							},
-							data : [
-								[{type : 'min'}, {type : 'max'}]
-							]
-						}
 					},
-					{
-						name:chartdata.seriesname[1],
-						type:'bar',
-						data:chartdata.seriesdatalist[1].map(function(value){return value[item]})
-					},
-					{
-						name:chartdata.seriesname[2],
-						type:'bar',
-						data:chartdata.seriesdatalist[2].map(function(value){return value[item]})
-					},
-					{
-						name:chartdata.seriesname[3],
-						type:'bar',
-						data:chartdata.seriesdatalist[3].map(function(value){return value[item]})
-					}
+					data: [
+						[{
+							type: 'min'
+						}, {
+							type: 'max'
+						}]
 					]
-				};
-				myChart.setOption(option);
-			}
-		function fetchData(url,symbol,size,callback){
-			$.ajax({
-					url: url,
-					dataType: "jsonp",
-					data: {
-						symbol:symbol,
-						size:size,
-						page:1,
-						_:new Date()
-					},
-					success: function(json, textStatus){
-						if(textStatus == "success"){
-							callback(json);
-						}
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						console.log("查询失败: ",XMLHttpRequest);
-					}
-				});
-		}
-		function extrData(json){
-			var reportdatelist = json.list.map(function(value,index,arr){
-				return {
-					xAxisdata:moment(value.reportdate || value.publishdate,"YYYYMMDD").format("YYYY"),
-					seriesname:moment(value.reportdate || value.publishdate,"YYYYMMDD").format("MM")
-				};
-			});
-			var xAxisdata = unique(reportdatelist.map(function(value){return value.xAxisdata}))
-										.sort(function(a,b){return b-a;});
-			var seriesname = unique(reportdatelist.map(function(value){return value.seriesname}))
-										.sort(function(a,b){return b-a;});
-			var seriesdatalist=[];
-			for(var i=0;i<seriesname.length;i++){
-				var flag = json.list.filter(function(element){
-					if(moment(element.reportdate || element.publishdate,"YYYYMMDD").format("MM") ==seriesname[i]){
-						return true;
-					}
-				});
-				if(moment(flag[0].reportdate || flag[0].publishdate,"YYYYMMDD").format("YYYY") != xAxisdata[0]){
-					flag = [{}].concat(flag);
 				}
-				if(moment(flag[flag.length-1].reportdate || flag[flag.length-1].publishdate,"YYYYMMDD").format("YYYY") != xAxisdata[xAxisdata.length-1]){
-					flag = flag.concat([{}]);
+			}, {
+				name: chartdata.seriesname[1],
+				type: 'bar',
+				data: chartdata.seriesdatalist[1].map(function(value) {
+					return value[item]
+				})
+			}, {
+				name: chartdata.seriesname[2],
+				type: 'bar',
+				data: chartdata.seriesdatalist[2].map(function(value) {
+					return value[item]
+				})
+			}, {
+				name: chartdata.seriesname[3],
+				type: 'bar',
+				data: chartdata.seriesdatalist[3].map(function(value) {
+					return value[item]
+				})
+			}]
+		};
+		myChart.setOption(option);
+	}
+
+	function fetchData(url, symbol, size, callback) {
+		$.ajax({
+			url: url,
+			dataType: "jsonp",
+			data: {
+				symbol: symbol,
+				size: size,
+				page: 1,
+				_: new Date()
+			},
+			success: function(json, textStatus) {
+				if (textStatus == "success") {
+					callback(json);
 				}
-				seriesdatalist.push(flag);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log("查询失败: ", XMLHttpRequest);
 			}
-			var chartdata = {
-				xAxisdata:xAxisdata,
-				seriesname:seriesname.map(function(value){return value+"月"}),
-				seriesdatalist:seriesdatalist
-			};
-			return chartdata;
-		}
-		function finmainindex(json){
-			var chartdata = extrData(json);
-			chart('extra1',chartdata,"totalliab");
-		}
-		function incstatement(json){
-			var chartdata = extrData(json);
-			chart('extra2',chartdata,"biztotcost");
-		}
-		$(function(){
-			fetchData("https://xueqiu.com/stock/f10/finmainindex.json","sz300223",40,finmainindex);
-			fetchData("https://xueqiu.com/stock/f10/incstatement.json","sz300223",40,incstatement);
 		});
-	</script>
+	}
+
+	function extrData(json) {
+		var reportdatelist = json.list.map(function(value, index, arr) {
+			return {
+				xAxisdata: moment(value.reportdate || value.publishdate, "YYYYMMDD").format("YYYY"),
+				seriesname: moment(value.reportdate || value.publishdate, "YYYYMMDD").format("MM")
+			};
+		});
+		var xAxisdata = unique(reportdatelist.map(function(value) {
+				return value.xAxisdata
+			}))
+			.sort(function(a, b) {
+				return b - a;
+			});
+		var seriesname = unique(reportdatelist.map(function(value) {
+				return value.seriesname
+			}))
+			.sort(function(a, b) {
+				return b - a;
+			});
+		var seriesdatalist = [];
+		for (var i = 0; i < seriesname.length; i++) {
+			var flag = json.list.filter(function(element) {
+				if (moment(element.reportdate || element.publishdate, "YYYYMMDD").format("MM") == seriesname[i]) {
+					return true;
+				}
+			});
+			if (moment(flag[0].reportdate || flag[0].publishdate, "YYYYMMDD").format("YYYY") != xAxisdata[0]) {
+				flag = [{}].concat(flag);
+			}
+			if (moment(flag[flag.length - 1].reportdate || flag[flag.length - 1].publishdate, "YYYYMMDD").format("YYYY") != xAxisdata[xAxisdata.length - 1]) {
+				flag = flag.concat([{}]);
+			}
+			seriesdatalist.push(flag);
+		}
+		var chartdata = {
+			xAxisdata: xAxisdata,
+			seriesname: seriesname.map(function(value) {
+				return value + "月"
+			}),
+			seriesdatalist: seriesdatalist
+		};
+		return chartdata;
+	}
+	$(function() {
+		requirejs(['app/SNB.financeTableDataInfo'], function() {
+			fetchData("https://xueqiu.com/stock/f10/finmainindex.json", "sz300223", 40, function(json) {
+				var chartdata = extrData(json);
+				chart('extra1', chartdata, data.financeTableDataInfo.ZYCWZB, "totalliab",json);
+			});
+			fetchData("https://xueqiu.com/stock/f10/incstatement.json", "sz300223", 40, function(json) {
+				var chartdata = extrData(json);
+				chart('extra2', chartdata, data.financeTableDataInfo.GSLRB, "biztotcost",json);
+			});
+			console.log(data.financeTableDataInfo.ZYCWZB);
+		});
+	});
+</script>
+
 </html>

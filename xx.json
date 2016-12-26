@@ -454,9 +454,10 @@ https: //xueqiu.com/S/SH600366/GSLRB	//综合损益表
 		"comptype": 4,
 		"name": "宁波韵升"
 	}
-
+http://api.xueqiu.com/stock/f10/balsheet.csv?symbol=SH600795&page=1&size=10000
+http://api.xueqiu.com/stock/f10/balsheet.json?symbol=SH600795&page=1&size=1
 https: //xueqiu.com/S/SH600366/ZCFZB	//资产负债表
-	https: //xueqiu.com/stock/f10/balsheet.json?symbol=SH600366&page=1&size=4
+	https://xueqiu.com/stock/f10/balsheet.json?symbol=SH600366&page=1&size=4
 	{
 		"list": [{
 			"compcode": "10000293",
@@ -1497,6 +1498,7 @@ https: //xueqiu.com/S/SH600366/DJCWZB	//单季财务指标
 		}]
 	}
 
+http://api.xueqiu.com/stock/f10/cfstatement.json?symbol=SH600795&page=1&size=1
 https: //xueqiu.com/S/SH600366/XJLLB  //现金流量表
 	https: //xueqiu.com/stock/f10/cfstatement.json?symbol=SH600366&page=1&size=4&_=1481026870033
 	{
