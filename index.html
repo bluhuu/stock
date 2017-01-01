@@ -99,7 +99,7 @@
 <script src="app.js"></script>
 <script src="asset/lib/echarts.js"></script>
 <script src="asset/lib/moment.js"></script>
-<script data-main="js/app" src="js/lib/require.js"></script>
+<script data-main="js/main" src="js/lib/require.js"></script>
 
 <script type="text/javascript">
 	function unique(arr) {
@@ -112,15 +112,15 @@
 		return result;
 	}
 
-	function chart(div, chartdata, DtaInfo,item,json) {
+	function chart(div, chartdata, DtaInfo, item, json) {
 		var worldMapContainer = document.getElementById(div);
 		var myChart = echarts.init(worldMapContainer);
 		option = {
 			title: {
-				text: (function(){
-					if(json.comptype){
+				text: (function() {
+					if (json.comptype) {
 						return (DtaInfo && DtaInfo[json.comptype][item]) || item;
-					}else{
+					} else {
 						return (DtaInfo && DtaInfo[item]) || item;
 					}
 				})(),
@@ -271,16 +271,15 @@
 		return chartdata;
 	}
 	$(function() {
-		requirejs(['app/SNB.financeTableDataInfo'], function() {
+		requirejs(['sub/SNB.financeTableDataInfo'], function() {
 			fetchData("https://xueqiu.com/stock/f10/finmainindex.json", "sz300223", 40, function(json) {
 				var chartdata = extrData(json);
-				chart('extra1', chartdata, data.financeTableDataInfo.ZYCWZB, "totalliab",json);
+				chart('extra1', chartdata, data.financeTableDataInfo.ZYCWZB, "totalliab", json);
 			});
 			fetchData("https://xueqiu.com/stock/f10/incstatement.json", "sz300223", 40, function(json) {
 				var chartdata = extrData(json);
-				chart('extra2', chartdata, data.financeTableDataInfo.GSLRB, "biztotcost",json);
+				chart('extra2', chartdata, data.financeTableDataInfo.GSLRB, "biztotcost", json);
 			});
-			console.log(data.financeTableDataInfo.ZYCWZB);
 		});
 	});
 </script>
