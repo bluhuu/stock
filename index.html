@@ -150,8 +150,12 @@
 				type: 'value',
 				axisLabel: {
 					formatter: function(value, index) {
-						if(Math.abs(value) > 10000){
-							return value / 10000 + " 亿";
+						if(Math.abs(value) > 1000000000000){
+							return value / 1000000000000 + " 万亿";
+						}else if(Math.abs(value) > 100000000){
+							return value / 100000000 + " 亿";
+						}else if(Math.abs(value) > 10000){
+							return value / 10000 + " 万";
 						}else{
 							return value;
 						}
