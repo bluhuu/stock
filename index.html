@@ -232,7 +232,13 @@
 		});
 	}
 	function extrDataByYear(json) {
-		var reportdatelist = json.list.map(function(value, index, arr) {
+		var dataList = json.list;
+		var chartItem = [];
+		_.each( dataList, function( ele ){
+			chartItem = _.union(chartItem,_.keys( _.pick( ele, function(value, key, object) { return value; } ) ));
+		});
+
+		var reportdatelist = dataList.map(function(value, index, arr) {
 			return {
 				xAxisdata: moment(value.reportdate || value.enddate, "YYYYMMDD").format("YYYY"),
 				seriesname: moment(value.reportdate || value.enddate, "YYYYMMDD").format("MM")
@@ -252,7 +258,7 @@
 			});
 		var seriesdatalist = [];
 		for (var i = 0; i < seriesname.length; i++) {
-			var flag = json.list.filter(function(element) {
+			var flag = dataList.filter(function(element) {
 				if (moment(element.reportdate || element.enddate, "YYYYMMDD").format("MM") == seriesname[i]) {
 					return true;
 				}
@@ -265,14 +271,12 @@
 			}
 			seriesdatalist.push(flag);
 		}
-		var chartdata = {
+		return {
 			xAxisdata: xAxisdata,
-			seriesname: seriesname.map(function(value) {
-				return value + "月"
-			}),
-			seriesdatalist: seriesdatalist
+			seriesname: seriesname.map(function(value) { return value + "月" }),
+			seriesdatalist: seriesdatalist,
+			chartItem:_.difference(chartItem,["compcode","reportdate","publishdate","begindate","enddate","reporttype","adjustdate","accstacode","accstaname"])
 		};
-		return chartdata;
 	}
 	function financeChart(url,stockCode,title) {
 		requirejs(['sub/SNB.financeTableDataInfo'], function() {
@@ -289,7 +293,7 @@
 						var $body = $(body);
 						switch (url) {
 							case "https://xueqiu.com/stock/f10/finmainindex.json":
-								_.each( _.keys(data.financeTableDataInfo.ZYCWZB), function( element, index, list ){
+								_.each( chartdata.chartItem, function( element, index, list ){
 									if(element!="reportdate" && element!="enddate"){
 										cwzb = $('<div class="canvasDiv" role="echart" style="width:340px;height:300px;float:left;"></div>');
 										$body.append(cwzb);
@@ -298,7 +302,7 @@
 								})
 								break;
 							case "https://xueqiu.com/stock/f10/incstatement.json":
-								_.each( _.keys(data.financeTableDataInfo.GSLRB[json.comptype]), function( element, index, list ){
+								_.each( chartdata.chartItem, function( element, index, list ){
 									if(element!="reportdate" && element!="enddate"){
 										cwzb = $('<div class="canvasDiv" role="echart" style="width:340px;height:300px;float:left;"></div>');
 										$body.append(cwzb);
@@ -307,7 +311,7 @@
 								})
 								break;
 							case "https://xueqiu.com/stock/f10/balsheet.json":
-								_.each( _.keys(data.financeTableDataInfo.ZCFZB[json.comptype]), function( element, index, list ){
+								_.each( chartdata.chartItem, function( element, index, list ){
 									if(element!="reportdate" && element!="enddate"){
 										cwzb = $('<div class="canvasDiv" role="echart" style="width:340px;height:300px;float:left;"></div>');
 										$body.append(cwzb);
@@ -316,7 +320,7 @@
 								})
 								break;
 							case "https://xueqiu.com/stock/f10/cfstatement.json":
-								_.each( _.keys(data.financeTableDataInfo.XJLLB[json.comptype]), function( element, index, list ){
+								_.each( chartdata.chartItem, function( element, index, list ){
 									if(element!="reportdate" && element!="enddate"){
 										cwzb = $('<div class="canvasDiv" role="echart" style="width:340px;height:300px;float:left;"></div>');
 										$body.append(cwzb);
