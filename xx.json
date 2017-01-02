@@ -1500,7 +1500,7 @@ https: //xueqiu.com/S/SH600366/DJCWZB	//单季财务指标
 
 http://api.xueqiu.com/stock/f10/cfstatement.json?symbol=SH600795&page=1&size=1
 https: //xueqiu.com/S/SH600366/XJLLB  //现金流量表
-	https: //xueqiu.com/stock/f10/cfstatement.json?symbol=SH600366&page=1&size=4&_=1481026870033
+	https://xueqiu.com/stock/f10/cfstatement.json?symbol=SH600366&page=1&size=4&_=1481026870033
 	{
 		"list": [{
 			"compcode": "10000293",
