@@ -44,6 +44,10 @@
 						<span class="Pricetobookratio">市净率</span>
 						<span class="pe_ttm">市盈率-静</span>
 						<span class="pe_lyr">市盈率-动</span>
+						<span class="zycwzb">主要</span>
+						<span class="gslrb">损益</span>
+						<span class="zcfzb">负债</span>
+						<span class="xjllb">现金</span>
 						<span class="remark">备注</span>
 						<span class="delete">删除</span>
 					</div>
@@ -85,21 +89,23 @@
 	</div>
 	<div class="mask"></div>
 	<div id="warning"></div>
-	<div id="extra1" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
-	<div id="extra2" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
-	<div id="extra3" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
-	<div id="extra4" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
+	<div>
+		<div id="ZYCWZB"></div>
+		<div id="GSLRB"></div>
+	</div>
 </body>
 <script src="jquery_1102.js"></script>
 <script src="jquery-ui.js"></script>
-<script src="libs\jquery.zclip.js"></script>
 <script src="util.js"></script>
 <script src="suggest.js"></script>
 <script src="stock.js"></script>
 <script src="app.js"></script>
 <script src="asset/lib/echarts.js"></script>
 <script src="asset/lib/moment.js"></script>
+<script src="js\lib\layer\layer.js"></script>
+<script src="js\lib\underscore.js"></script>
 <script data-main="js/main" src="js/lib/require.js"></script>
+<!-- <script src="js\sub\SNB.financeTableDataInfo.js"></script> -->
 
 <script type="text/javascript">
 	function unique(arr) {
@@ -111,10 +117,8 @@
 		}
 		return result;
 	}
-
-	function chart(div, chartdata, DtaInfo, item, json) {
-		var worldMapContainer = document.getElementById(div);
-		var myChart = echarts.init(worldMapContainer);
+	function chart(dom, chartdata, DtaInfo, item, json) {
+		var myChart = echarts.init(dom);
 		option = {
 			title: {
 				text: (function() {
@@ -124,7 +128,8 @@
 						return (DtaInfo && DtaInfo[item]) || item;
 					}
 				})(),
-				left: 'center'
+				left: 'center',
+				top: '5%'
 			},
 			tooltip: {
 				trigger: 'axis',
@@ -155,7 +160,11 @@
 				type: 'value',
 				axisLabel: {
 					formatter: function(value, index) {
-						return value / 10000 + " 亿";
+						if(Math.abs(value) > 10000){
+							return value / 10000 + " 亿";
+						}else{
+							return value;
+						}
 					},
 					textStyle: {
 						color: '#999',
@@ -163,49 +172,55 @@
 					}
 				}
 			}],
-			series: [{
-				name: chartdata.seriesname[0],
-				type: 'bar',
-				data: chartdata.seriesdatalist[0].map(function(value) {
-					return value[item]
-				}),
-				markLine: {
-					lineStyle: {
-						normal: {
-							type: 'dashed'
-						}
-					},
-					data: [
-						[{
-							type: 'min'
-						}, {
-							type: 'max'
-						}]
-					]
+			series: [
+				{
+					name: chartdata.seriesname[0],
+					type: 'bar',
+					data: chartdata.seriesdatalist[0].map(function(value) {
+						return value[item]
+					}),
+					markLine: {
+						label:{
+							normal:{
+								show:false
+							}
+						},
+						lineStyle: {
+							normal: {
+								type: 'dashed'
+							}
+						},
+						data: [
+							[{
+								type: 'min'
+							}, {
+								type: 'max'
+							}]
+						]
+					}
+				}, {
+					name: chartdata.seriesname[1],
+					type: 'bar',
+					data: chartdata.seriesdatalist[1].map(function(value) {
+						return value[item]
+					})
+				}, {
+					name: chartdata.seriesname[2],
+					type: 'bar',
+					data: chartdata.seriesdatalist[2].map(function(value) {
+						return value[item]
+					})
+				}, {
+					name: chartdata.seriesname[3],
+					type: 'bar',
+					data: chartdata.seriesdatalist[3].map(function(value) {
+						return value[item]
+					})
 				}
-			}, {
-				name: chartdata.seriesname[1],
-				type: 'bar',
-				data: chartdata.seriesdatalist[1].map(function(value) {
-					return value[item]
-				})
-			}, {
-				name: chartdata.seriesname[2],
-				type: 'bar',
-				data: chartdata.seriesdatalist[2].map(function(value) {
-					return value[item]
-				})
-			}, {
-				name: chartdata.seriesname[3],
-				type: 'bar',
-				data: chartdata.seriesdatalist[3].map(function(value) {
-					return value[item]
-				})
-			}]
+			]
 		};
 		myChart.setOption(option);
 	}
-
 	function fetchData(url, symbol, size, callback) {
 		$.ajax({
 			url: url,
@@ -226,7 +241,6 @@
 			}
 		});
 	}
-
 	function extrData(json) {
 		var reportdatelist = json.list.map(function(value, index, arr) {
 			return {
@@ -270,18 +284,52 @@
 		};
 		return chartdata;
 	}
-	$(function() {
+	function financeChart(url,stockCode,title) {
 		requirejs(['sub/SNB.financeTableDataInfo'], function() {
-			fetchData("https://xueqiu.com/stock/f10/finmainindex.json", "sz300223", 40, function(json) {
+			fetchData(url, stockCode, 40, function(json) {
+				console.log("json: ",json);//---------------
 				var chartdata = extrData(json);
-				chart('extra1', chartdata, data.financeTableDataInfo.ZYCWZB, "totalliab", json);
+				console.log("chartdata: ",chartdata);//---------------
+				var index = layer.open({
+					title:stockCode+" "+title,
+					type: 2,
+					content: 'modal.html',
+					success: function(layero, index){
+						var body = layer.getChildFrame('body', index);
+						var $body = $(body);
+						switch (url) {
+							case "https://xueqiu.com/stock/f10/finmainindex.json":
+								_.each( _.keys(data.financeTableDataInfo.ZYCWZB), function( element, index, list ){
+									if(element!="reportdate"){
+										cwzb = $('<div class="canvasDiv" role="echart" style="width:340px;height:300px;float:left;"></div>');
+										$body.append(cwzb);
+										chart(cwzb[0], chartdata, data.financeTableDataInfo.ZYCWZB, element, json);
+									}
+								})
+								break;
+							case "https://xueqiu.com/stock/f10/incstatement.json":
+								_.each( _.keys(data.financeTableDataInfo.GSLRB[json.comptype]), function( element, index, list ){
+									if(element!="reportdate"){
+										cwzb = $('<div class="canvasDiv" role="echart" style="width:340px;height:300px;float:left;"></div>');
+										$body.append(cwzb);
+										chart(cwzb[0], chartdata, data.financeTableDataInfo.GSLRB, element, json);
+									}
+								})
+								break;
+							default:
+
+						}
+
+					}
+				});
+				layer.full(index);
 			});
-			fetchData("https://xueqiu.com/stock/f10/incstatement.json", "sz300223", 40, function(json) {
-				var chartdata = extrData(json);
-				chart('extra2', chartdata, data.financeTableDataInfo.GSLRB, "biztotcost", json);
-			});
+			// fetchData("https://xueqiu.com/stock/f10/incstatement.json", "sz300223", 40, function(json) {
+			// 	var chartdata = extrData(json);
+			// 	chart('extra2', chartdata, data.financeTableDataInfo.GSLRB, "biztotcost", json);
+			// });
 		});
-	});
+	};
 </script>
 
 </html>

@@ -167,6 +167,10 @@ function getLinkUrl(obj){
 						'<span class="Pricetobookratio">--</span>',
 						'<span class="pe_lyr">--</span>',
 						'<span class="pe_ttm">--</span>',
+						'<span class="zycwzb" data-key="{key}"></span>',
+						'<span class="gslrb" data-key="{key}"></span>',
+						'<span class="zcfzb" data-key="{key}"></span>',
+						'<span class="xjllb" data-key="{key}"></span>',
 						'<span class="remark {remarkFlag}" title="{remark}">加备注</span>',
 						'<a href="#" class="delete" data-key="{key}">X</a>',
 					'</li>'].join("");
@@ -337,6 +341,16 @@ function getLinkUrl(obj){
 					.end().find(".pe_ttm").html(pe_ttm)
 					.end().find("#remark").html($(this).attr("title"));
 				$(".mask").show();
+			}).delegate(".zycwzb","click",function(e){
+				e.preventDefault();
+				var $el = $(this);
+				var key = $el.attr("data-key");
+				financeChart("https://xueqiu.com/stock/f10/finmainindex.json",key,"主要财务指标");
+			}).delegate(".gslrb","click",function(e){
+				e.preventDefault();
+				var $el = $(this);
+				var key = $el.attr("data-key");
+				financeChart("https://xueqiu.com/stock/f10/incstatement.json",key,"综合损益表");
 			});
 			$(".remark-form").delegate(".close","click",function(e){
 				$(e.delegateTarget).hide();
