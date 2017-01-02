@@ -107,15 +107,6 @@
 <script data-main="js/main" src="js/lib/require.js"></script>
 
 <script type="text/javascript">
-	function unique(arr) {
-		var result = [];
-		for (var i = 0; i < arr.length; i++) {
-			if (result.indexOf(arr[i]) == -1) {
-				result.push(arr[i])
-			}
-		}
-		return result;
-	}
 	function chartByYear(dom, chartdata, DtaInfo, item, json) {
 		var myChart = echarts.init(dom);
 		option = {
@@ -247,13 +238,13 @@
 				seriesname: moment(value.reportdate || value.enddate, "YYYYMMDD").format("MM")
 			};
 		});
-		var xAxisdata = unique(reportdatelist.map(function(value) {
+		var xAxisdata = _.uniq(reportdatelist.map(function(value) {
 				return value.xAxisdata
 			}))
 			.sort(function(a, b) {
 				return b - a;
 			});
-		var seriesname = unique(reportdatelist.map(function(value) {
+		var seriesname = _.uniq(reportdatelist.map(function(value) {
 				return value.seriesname
 			}))
 			.sort(function(a, b) {
