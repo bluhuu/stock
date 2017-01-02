@@ -351,6 +351,16 @@ function getLinkUrl(obj){
 				var $el = $(this);
 				var key = $el.attr("data-key");
 				financeChart("https://xueqiu.com/stock/f10/incstatement.json",key,"综合损益表");
+			}).delegate(".zcfzb","click",function(e){
+				e.preventDefault();
+				var $el = $(this);
+				var key = $el.attr("data-key");
+				financeChart("https://xueqiu.com/stock/f10/balsheet.json",key,"资产负债表");
+			}).delegate(".xjllb","click",function(e){
+				e.preventDefault();
+				var $el = $(this);
+				var key = $el.attr("data-key");
+				financeChart("https://xueqiu.com/stock/f10/cfstatement.json",key,"现金流量表");
 			});
 			$(".remark-form").delegate(".close","click",function(e){
 				$(e.delegateTarget).hide();
