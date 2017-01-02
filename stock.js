@@ -158,7 +158,7 @@ function getLinkUrl(obj){
 }
 
 ;(function($,undefined){
-	var sTplList = ['<li id="{key}" data-type="{type}"">',
+	var sTplList = ['<li id="{key}" data-type="{type}" data-name="{name}({code})">',
 						'<span class="top" title="置顶">置顶</span>',
 						'<span class="name"><a target="_blank" href="{url}">{name}({code})</a></span>',
 						'<span class="price">--</span>',
@@ -345,22 +345,26 @@ function getLinkUrl(obj){
 				e.preventDefault();
 				var $el = $(this);
 				var key = $el.attr("data-key");
-				financeChart("https://xueqiu.com/stock/f10/finmainindex.json",key,"主要财务指标");
+				var name = $(this).parents("li").attr("data-name");
+				financeChart("https://xueqiu.com/stock/f10/finmainindex.json",key,name+" 主要财务指标");
 			}).delegate(".gslrb","click",function(e){
 				e.preventDefault();
 				var $el = $(this);
 				var key = $el.attr("data-key");
-				financeChart("https://xueqiu.com/stock/f10/incstatement.json",key,"综合损益表");
+				var name = $(this).parents("li").attr("data-name");
+				financeChart("https://xueqiu.com/stock/f10/incstatement.json",key,name+" 综合损益表");
 			}).delegate(".zcfzb","click",function(e){
 				e.preventDefault();
 				var $el = $(this);
 				var key = $el.attr("data-key");
-				financeChart("https://xueqiu.com/stock/f10/balsheet.json",key,"资产负债表");
+				var name = $(this).parents("li").attr("data-name");
+				financeChart("https://xueqiu.com/stock/f10/balsheet.json",key,name+" 资产负债表");
 			}).delegate(".xjllb","click",function(e){
 				e.preventDefault();
 				var $el = $(this);
 				var key = $el.attr("data-key");
-				financeChart("https://xueqiu.com/stock/f10/cfstatement.json",key,"现金流量表");
+				var name = $(this).parents("li").attr("data-name");
+				financeChart("https://xueqiu.com/stock/f10/cfstatement.json",key,name+" 现金流量表");
 			});
 			$(".remark-form").delegate(".close","click",function(e){
 				$(e.delegateTarget).hide();

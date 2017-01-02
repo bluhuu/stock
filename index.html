@@ -207,7 +207,8 @@
 						return value[item]
 					})
 				}
-			]
+			],
+			animation:false
 		};
 		myChart.setOption(option);
 	}
@@ -280,13 +281,15 @@
 	}
 	function financeChart(url,stockCode,title) {
 		requirejs(['sub/SNB.financeTableDataInfo'], function() {
-			fetchData(url, stockCode, 40, function(json) {
+			fetchData(url, stockCode, 24, function(json) {
 				console.log("json: ",json);//---------------
 				var chartdata = extrDataByYear(json);
 				console.log("chartdata: ",chartdata);//---------------
 				var index = layer.open({
-					title:stockCode+" "+title,
+					title:title,
 					type: 2,
+					maxmin:true,
+					area: ['100%', '100%'],
 					content: 'modal.html',
 					success: function(layero, index){
 						var body = layer.getChildFrame('body', index);
@@ -334,7 +337,7 @@
 
 					}
 				});
-				layer.full(index);
+				// layer.full(index);
 			});
 		});
 	};
