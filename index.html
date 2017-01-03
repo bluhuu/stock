@@ -44,6 +44,10 @@
 						<span class="Pricetobookratio">市净率</span>
 						<span class="pe_ttm">市盈率-静</span>
 						<span class="pe_lyr">市盈率-动</span>
+						<span class="zycwzb">主要</span>
+						<span class="gslrb">损益</span>
+						<span class="zcfzb">负债</span>
+						<span class="xjllb">现金</span>
 						<span class="remark">备注</span>
 						<span class="delete">删除</span>
 					</div>
@@ -86,46 +90,37 @@
 	
 	<div class="mask"></div>
 	<div id="warning"></div>
-	<div id="extra1" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
-	<div id="extra2" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
-	<div id="extra3" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
-	<div id="extra4" class="canvasDiv" role="echart" style="width:400px;height:300px;float:left;"></div>
+	<div>
+		<div id="ZYCWZB"></div>
+		<div id="GSLRB"></div>
+	</div>
 </body>
 <script src="jquery_1102.js"></script>
 <script src="jquery-ui.js"></script>
-<script src="libs\jquery.zclip.js"></script>
 <script src="util.js"></script>
 <script src="suggest.js"></script>
 <script src="stock.js"></script>
 <script src="app.js"></script>
 <script src="asset/lib/echarts.js"></script>
 <script src="asset/lib/moment.js"></script>
-<script data-main="js/app" src="js/lib/require.js"></script>
+<script src="js\lib\layer\layer.js"></script>
+<script src="js\lib\underscore.js"></script>
+<script data-main="js/main" src="js/lib/require.js"></script>
 
 <script type="text/javascript">
-	function unique(arr) {
-		var result = [];
-		for (var i = 0; i < arr.length; i++) {
-			if (result.indexOf(arr[i]) == -1) {
-				result.push(arr[i])
-			}
-		}
-		return result;
-	}
-
-	function chart(div, chartdata, DtaInfo,item,json) {
-		var worldMapContainer = document.getElementById(div);
-		var myChart = echarts.init(worldMapContainer);
+	function chartByYear(dom, chartdata, DtaInfo, item, json) {
+		var myChart = echarts.init(dom);
 		option = {
 			title: {
-				text: (function(){
-					if(json.comptype){
+				text: (function() {
+					if (json.comptype) {
 						return (DtaInfo && DtaInfo[json.comptype][item]) || item;
-					}else{
+					} else {
 						return (DtaInfo && DtaInfo[item]) || item;
 					}
 				})(),
-				left: 'center'
+				left: 'center',
+				top: '5%'
 			},
 			tooltip: {
 				trigger: 'axis',
@@ -156,7 +151,15 @@
 				type: 'value',
 				axisLabel: {
 					formatter: function(value, index) {
-						return value / 10000 + " 亿";
+						if(Math.abs(value) > 1000000000000){
+							return value / 1000000000000 + " 万亿";
+						}else if(Math.abs(value) > 100000000){
+							return value / 100000000 + " 亿";
+						}else if(Math.abs(value) > 10000){
+							return value / 10000 + " 万";
+						}else{
+							return value;
+						}
 					},
 					textStyle: {
 						color: '#999',
@@ -164,49 +167,56 @@
 					}
 				}
 			}],
-			series: [{
-				name: chartdata.seriesname[0],
-				type: 'bar',
-				data: chartdata.seriesdatalist[0].map(function(value) {
-					return value[item]
-				}),
-				markLine: {
-					lineStyle: {
-						normal: {
-							type: 'dashed'
-						}
-					},
-					data: [
-						[{
-							type: 'min'
-						}, {
-							type: 'max'
-						}]
-					]
+			series: [
+				{
+					name: chartdata.seriesname[0],
+					type: 'bar',
+					data: chartdata.seriesdatalist[0].map(function(value) {
+						return value[item]
+					}),
+					markLine: {
+						label:{
+							normal:{
+								show:false
+							}
+						},
+						lineStyle: {
+							normal: {
+								type: 'dashed'
+							}
+						},
+						data: [
+							[{
+								type: 'min'
+							}, {
+								type: 'max'
+							}]
+						]
+					}
+				}, {
+					name: chartdata.seriesname[1],
+					type: 'bar',
+					data: chartdata.seriesdatalist[1].map(function(value) {
+						return value[item]
+					})
+				}, {
+					name: chartdata.seriesname[2],
+					type: 'bar',
+					data: chartdata.seriesdatalist[2].map(function(value) {
+						return value[item]
+					})
+				}, {
+					name: chartdata.seriesname[3],
+					type: 'bar',
+					data: chartdata.seriesdatalist[3].map(function(value) {
+						return value[item]
+					})
 				}
-			}, {
-				name: chartdata.seriesname[1],
-				type: 'bar',
-				data: chartdata.seriesdatalist[1].map(function(value) {
-					return value[item]
-				})
-			}, {
-				name: chartdata.seriesname[2],
-				type: 'bar',
-				data: chartdata.seriesdatalist[2].map(function(value) {
-					return value[item]
-				})
-			}, {
-				name: chartdata.seriesname[3],
-				type: 'bar',
-				data: chartdata.seriesdatalist[3].map(function(value) {
-					return value[item]
-				})
-			}]
+			],
+			animation:false
 		};
 		myChart.setOption(option);
 	}
-
 	function fetchData(url, symbol, size, callback) {
 		$.ajax({
 			url: url,
@@ -227,21 +237,26 @@
 			}
 		});
 	}
+	function extrDataByYear(json) {
+		var dataList = json.list;
+		var chartItem = [];
+		_.each( dataList, function( ele ){
+			chartItem = _.union(chartItem,_.keys( _.pick( ele, function(value, key, object) { return value; } ) ));
+		});
 
-	function extrData(json) {
-		var reportdatelist = json.list.map(function(value, index, arr) {
+		var reportdatelist = dataList.map(function(value, index, arr) {
 			return {
-				xAxisdata: moment(value.reportdate || value.publishdate, "YYYYMMDD").format("YYYY"),
-				seriesname: moment(value.reportdate || value.publishdate, "YYYYMMDD").format("MM")
+				xAxisdata: moment(value.reportdate || value.enddate, "YYYYMMDD").format("YYYY"),
+				seriesname: moment(value.reportdate || value.enddate, "YYYYMMDD").format("MM")
 			};
 		});
-		var xAxisdata = unique(reportdatelist.map(function(value) {
+		var xAxisdata = _.uniq(reportdatelist.map(function(value) {
 				return value.xAxisdata
 			}))
 			.sort(function(a, b) {
 				return b - a;
 			});
-		var seriesname = unique(reportdatelist.map(function(value) {
+		var seriesname = _.uniq(reportdatelist.map(function(value) {
 				return value.seriesname
 			}))
 			.sort(function(a, b) {
@@ -249,41 +264,88 @@
 			});
 		var seriesdatalist = [];
 		for (var i = 0; i < seriesname.length; i++) {
-			var flag = json.list.filter(function(element) {
-				if (moment(element.reportdate || element.publishdate, "YYYYMMDD").format("MM") == seriesname[i]) {
+			var flag = dataList.filter(function(element) {
+				if (moment(element.reportdate || element.enddate, "YYYYMMDD").format("MM") == seriesname[i]) {
 					return true;
 				}
 			});
-			if (moment(flag[0].reportdate || flag[0].publishdate, "YYYYMMDD").format("YYYY") != xAxisdata[0]) {
+			if (moment(flag[0].reportdate || flag[0].enddate, "YYYYMMDD").format("YYYY") != xAxisdata[0]) {
 				flag = [{}].concat(flag);
 			}
-			if (moment(flag[flag.length - 1].reportdate || flag[flag.length - 1].publishdate, "YYYYMMDD").format("YYYY") != xAxisdata[xAxisdata.length - 1]) {
+			if (moment(flag[flag.length - 1].reportdate || flag[flag.length - 1].enddate, "YYYYMMDD").format("YYYY") != xAxisdata[xAxisdata.length - 1]) {
 				flag = flag.concat([{}]);
 			}
 			seriesdatalist.push(flag);
 		}
-		var chartdata = {
+		return {
 			xAxisdata: xAxisdata,
-			seriesname: seriesname.map(function(value) {
-				return value + "月"
-			}),
-			seriesdatalist: seriesdatalist
+			seriesname: seriesname.map(function(value) { return value + "月" }),
+			seriesdatalist: seriesdatalist,
+			chartItem:_.difference(chartItem,["compcode","reportdate","publishdate","begindate","enddate","reporttype","adjustdate","accstacode","accstaname"])
 		};
-		return chartdata;
 	}
-	$(function() {
-		requirejs(['app/SNB.financeTableDataInfo'], function() {
-			fetchData("https://xueqiu.com/stock/f10/finmainindex.json", "sz300223", 40, function(json) {
-				var chartdata = extrData(json);
-				chart('extra1', chartdata, data.financeTableDataInfo.ZYCWZB, "totalliab",json);
+	function financeChart(url,stockCode,title) {
+		requirejs(['sub/SNB.financeTableDataInfo'], function() {
+			fetchData(url, stockCode, 24, function(json) {
+				console.log("json: ",json);//---------------
+				var chartdata = extrDataByYear(json);
+				console.log("chartdata: ",chartdata);//---------------
+				var index = layer.open({
+					title:title,
+					type: 2,
+					maxmin:true,
+					area: ['100%', '100%'],
+					content: 'modal.html',
+					success: function(layero, index){
+						var body = layer.getChildFrame('body', index);
+						var $body = $(body);
+						switch (url) {
+							case "https://xueqiu.com/stock/f10/finmainindex.json":
+								_.each( chartdata.chartItem, function( element, index, list ){
+									if(element!="reportdate" && element!="enddate"){
+										cwzb = $('<div class="canvasDiv" role="echart" style="width:340px;height:300px;float:left;"></div>');
+										$body.append(cwzb);
+										chartByYear(cwzb[0], chartdata, data.financeTableDataInfo.ZYCWZB, element, json);
+									}
+								})
+								break;
+							case "https://xueqiu.com/stock/f10/incstatement.json":
+								_.each( chartdata.chartItem, function( element, index, list ){
+									if(element!="reportdate" && element!="enddate"){
+										cwzb = $('<div class="canvasDiv" role="echart" style="width:340px;height:300px;float:left;"></div>');
+										$body.append(cwzb);
+										chartByYear(cwzb[0], chartdata, data.financeTableDataInfo.GSLRB, element, json);
+									}
+								})
+								break;
+							case "https://xueqiu.com/stock/f10/balsheet.json":
+								_.each( chartdata.chartItem, function( element, index, list ){
+									if(element!="reportdate" && element!="enddate"){
+										cwzb = $('<div class="canvasDiv" role="echart" style="width:340px;height:300px;float:left;"></div>');
+										$body.append(cwzb);
+										chartByYear(cwzb[0], chartdata, data.financeTableDataInfo.ZCFZB, element, json);
+									}
+								})
+								break;
+							case "https://xueqiu.com/stock/f10/cfstatement.json":
+								_.each( chartdata.chartItem, function( element, index, list ){
+									if(element!="reportdate" && element!="enddate"){
+										cwzb = $('<div class="canvasDiv" role="echart" style="width:340px;height:300px;float:left;"></div>');
+										$body.append(cwzb);
+										chartByYear(cwzb[0], chartdata, data.financeTableDataInfo.XJLLB, element, json);
+									}
+								})
+								break;
+							default:
+
+						}
+
+					}
+				});
+				// layer.full(index);
 			});
-			fetchData("https://xueqiu.com/stock/f10/incstatement.json", "sz300223", 40, function(json) {
-				var chartdata = extrData(json);
-				chart('extra2', chartdata, data.financeTableDataInfo.GSLRB, "biztotcost",json);
-			});
-			console.log(data.financeTableDataInfo.ZYCWZB);
 		});
-	});
+	};
 </script>
 
 </html>
