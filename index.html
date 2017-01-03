@@ -87,7 +87,7 @@
 			<input type="button" class="btn" value="提交">
 		</div>
 	</div>
-	
+
 	<div class="mask"></div>
 	<div id="warning"></div>
 	<div>
@@ -287,6 +287,10 @@
 	function financeChart(url,stockCode,title) {
 		requirejs(['sub/SNB.financeTableDataInfo'], function() {
 			fetchData(url, stockCode, 24, function(json) {
+				if(json.list.length==0){
+					layer.msg("请点击公司图标！",{time:1500});
+					return;
+				}
 				console.log("json: ",json);//---------------
 				var chartdata = extrDataByYear(json);
 				console.log("chartdata: ",chartdata);//---------------
